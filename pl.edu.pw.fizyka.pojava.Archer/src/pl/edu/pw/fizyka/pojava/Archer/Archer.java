@@ -1,6 +1,6 @@
 package  pl.edu.pw.fizyka.pojava.Archer;
 
-//to sie wyswietli?
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
