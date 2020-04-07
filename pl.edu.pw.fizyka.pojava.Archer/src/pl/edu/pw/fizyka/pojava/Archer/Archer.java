@@ -138,10 +138,10 @@ public class Archer extends JFrame
 	        
 	        //panel z animacj¹
 	        animationPanel = new JPanel();
-	        animationPanel.setBounds(1, 1, 1180, 400); //ustawiam rozmiar panelu
+	        animationPanel.setBounds(1, 1, 1180, 400); //ustawiam rozmiar panelu	        	        
 	        animationPanel.setBackground(Color.white); //ustawiam kolor panelu
 	        add(animationPanel);
-	        this.add(animationPanel, BorderLayout.CENTER); //wykorzystanie BorderLayoutu
+	       // this.add(animationPanel, BorderLayout.CENTER); //wykorzystanie BorderLayoutu
 	        
 	            
 	        //panel ustawieñ
