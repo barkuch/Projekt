@@ -29,6 +29,7 @@ public class Archer extends JFrame
 	    private int mass3 = 13;
 	    private int speedValue; 	//zmienne niezbêdne do ChangeListenera
 	    private int angleValue;
+	    private double mass;
 	   
 	    private double range;
 	    private double maxheight;
@@ -190,14 +191,17 @@ public class Archer extends JFrame
 	        		{		       			
 	        			if (comboboxMass.getSelectedItem().equals("stalowa"))	      			
 	        			{	        				
+	        				mass = mass1;
 	        				labelMass.setText("Masa wybranej strza³y: " + mass1 + " kg");	//7 kg
 	        			}
-	        			if (comboboxMass.getSelectedItem().equals("aluminiowa"))	      			
+	        			else if (comboboxMass.getSelectedItem().equals("aluminiowa"))	      			
 	        			{
+	        				mass = mass2;
 	        				labelMass.setText("Masa wybranej strza³y: " + mass2 + " kg");	//2.4 kg
 	        			}
-	        			if (comboboxMass.getSelectedItem().equals("tytanowa"))	      			
+	        			else if (comboboxMass.getSelectedItem().equals("tytanowa"))	      			
 	        			{
+	        				mass = mass3;
 	        				labelMass.setText("Masa wybranej strza³y: " + mass3 + " kg");	//13 kg
 	        			}
 	        		}
@@ -252,7 +256,7 @@ public class Archer extends JFrame
         			@Override
         			public void actionPerformed(ActionEvent e) //Math.sin(Math.toRadians(cos)) - wzor zeby z tego co mamy zrobic to co chcemy xd
         			{					
-        				flighttime = (2 * speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory
+        				flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory
         				textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
         				        			       				        				
         				maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / 2 * g;
@@ -265,7 +269,8 @@ public class Archer extends JFrame
         	add(buttonStart); 	       	      	   
 	    }
 	    
-	    	   
+	    
+	    
 	private class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
     {
 		@Override
