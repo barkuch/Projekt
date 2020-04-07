@@ -265,7 +265,7 @@ public class Archer extends JFrame
         	add(buttonStart); 	       	      	   
 	    }
 	    
-	    	 //napisze tu cos i chce wiedziec co sie stanies  	 ffffff   
+	    	   
 	private class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
     {
 		@Override
