@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-public class Archer1 extends JFrame 
+public class Archer extends JFrame 
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
@@ -67,7 +67,7 @@ public class Archer1 extends JFrame
 	    private JComboBox<String> comboboxMass;
 	   
 	    
-	    public Archer1() throws HeadlessException 
+	    public Archer() throws HeadlessException 
 	    {
 	    	this.setSize(1200, 620);  //ustawiam rozmiar ramki
 	    	setTitle("Archer");		//ustawiam tytu³ ramki
@@ -282,7 +282,7 @@ public class Archer1 extends JFrame
 		
 	public static void main(String[] args) 
 	{
-		Archer1 frame = new Archer1(); 
+		Archer frame = new Archer(); 
         frame.setVisible(true);
 	}
 
