@@ -146,7 +146,8 @@ public class Archer extends JFrame
 	       
 	        //setDefaultCloseOperation(EXIT_ON_CLOSE);
 			//setLayout(new FlowLayout());
-			//panel z animacj¹
+			
+	        //panel z animacj¹
 	        animationPanel obrazek = new animationPanel();			
 			obrazek.setBounds(1, 1, 1180, 400);
 			add(obrazek);
