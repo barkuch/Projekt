@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-//komentarz
+//komentarz komenrza
 public class Archer extends JFrame 
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
