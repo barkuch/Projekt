@@ -2,12 +2,9 @@ package pl.edu.pw.fizyka.pojava.Archer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
- 
+import java.net.URL; 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
  
 public class animationPanel extends JPanel 
@@ -15,14 +12,18 @@ public class animationPanel extends JPanel
  
     private BufferedImage image;
  
-    public animationPanel() {
+    public animationPanel() 
+    {
         super();
         
         // Plik umieszczony w podpakiecie "obrazki"
         URL resource = getClass().getResource("background.jpg");        
-        try {
+        try 
+        {
             image = ImageIO.read(resource);
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
             System.err.println("Blad odczytu obrazka");
             e.printStackTrace();
         }
@@ -32,7 +33,8 @@ public class animationPanel extends JPanel
     }
  
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) 
+    {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image, 0, 0, this);
        
