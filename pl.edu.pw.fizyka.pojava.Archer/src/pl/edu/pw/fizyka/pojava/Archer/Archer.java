@@ -136,20 +136,30 @@ public class Archer extends JFrame
 	        menuBar.add(more);
 	        this.setJMenuBar(menuBar);
 	        
-	        //panel z animacj¹
-	        animationPanel = new JPanel();
-	        animationPanel.setBounds(1, 1, 1180, 400); //ustawiam rozmiar panelu	        	        
-	        animationPanel.setBackground(Color.white); //ustawiam kolor panelu
-	        add(animationPanel);
-	       // this.add(animationPanel, BorderLayout.CENTER); //wykorzystanie BorderLayoutu
 	        
-	            
+	        //animationPanel = new JPanel();
+	       
+	        //animationPanel.setBounds(1, 1, 1180, 400); //ustawiam rozmiar panelu	        	        
+	        //animationPanel.setBackground(Color.white); //ustawiam kolor panelu
+	        //add(animationPanel);
+	       // this.add(animationPanel, BorderLayout.CENTER); //wykorzystanie BorderLayoutu
+	       
+	        //setDefaultCloseOperation(EXIT_ON_CLOSE);
+			//setLayout(new FlowLayout());
+			//panel z animacj¹
+	        animationPanel obrazek = new animationPanel();			
+			obrazek.setBounds(1, 1, 1180, 400);
+			add(obrazek);
+	        
+	        
+	        
+	        
 	        //panel ustawieñ
 	        controlPanel = new JPanel();	       	        				
 	        	labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1
 	        	labelAngleValue.setBounds(10, 390, 200, 50); //ustawiam po³o¿enie etykiety
-	        add(labelAngleValue); 
-	        	
+	        add(labelAngleValue); 	        
+	        
 	        	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);
 	        	sliderAngleValue.setBounds(10, 425, 200, 50); //ustawiam po³o¿enie suwaka
 	        	sliderAngleValue.setPreferredSize(new Dimension(200, 50));  //rozmiar suwaka
