@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
-//komentarz komenrza
+
 public class Archer extends JFrame 
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
@@ -26,7 +26,7 @@ public class Archer extends JFrame
 	   
 	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
 	  	    
-	  //variable values
+	    //variable values
 	    private double resistance;	 
 	    private int mass1 = 7; 
 	    private double mass2 = 2.4;
@@ -45,7 +45,7 @@ public class Archer extends JFrame
 	    private JMenu more;
 	    private JMenuItem itemExit; //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
 	    private JMenuItem itemSave;
-	    private JMenuItem itemNew;
+	   
 	    private JMenuItem itemLoad;
 	    private JMenuItem itemAuthors;
 
@@ -86,16 +86,7 @@ public class Archer extends JFrame
 
 	      //Menu
 	        menuBar = new JMenuBar();   
-	        	menu = new JMenu("Menu");	 	
-	        		itemNew = new JMenuItem("Nowa gra");   //zaprogramowanie opcji umieszczonych w menu
-	        		itemNew.addActionListener(new ActionListener() 
-	        		{
-	        			@Override
-	        			public void actionPerformed(ActionEvent e) 
-	        			{
-	        			
-	        			}
-	        		});
+	        	menu = new JMenu("Menu");	 		        		
 	        		itemSave = new JMenuItem("Zapisz stan gry");//dodaje opcje do Menu wybrane opcje
 	        		itemSave.addActionListener(new ActionListener() 
 	        		{
@@ -149,7 +140,7 @@ public class Archer extends JFrame
 	        			@Override
 	        			public void actionPerformed(ActionEvent e) 
 	        			{
-	        				JFileChooser chooser = new JFileChooser(); 
+	        				/*JFileChooser chooser = new JFileChooser(); 
         					chooser.setDialogTitle("Wybierz plik");  				
         					int returnVal = chooser.showSaveDialog(null);
         					if(returnVal == JFileChooser.APPROVE_OPTION)
@@ -170,7 +161,7 @@ public class Archer extends JFrame
 									
 									e1.printStackTrace();
 								}
-        					}
+        					}*/
 	        			}
 	        		});
 	        		itemExit = new JMenuItem("Wyjœcie");
@@ -181,9 +172,8 @@ public class Archer extends JFrame
 						{
 							System.exit(0);
 						}	
-					});
-	        	menu.add(itemNew);//dodaje elementy do Menu
-	        	menu.add(itemSave);	   
+					});	        	
+	        	menu.add(itemSave);	//dodaje elementy do Menu   
 	        	menu.add(itemLoad);
 				menu.addSeparator(); //ta kreska miedzy nimi
 	        	menu.add(itemExit);
