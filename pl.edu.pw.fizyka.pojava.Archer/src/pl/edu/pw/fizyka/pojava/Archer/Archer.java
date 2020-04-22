@@ -6,7 +6,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
+import java.util.Scanner;
 
 //komentarz komenrza
 public class Archer extends JFrame 
@@ -51,22 +55,26 @@ public class Archer extends JFrame
 	    
 	    //bottom panel
 	    private JSlider sliderAngleValue;  //Tworzê 2 suwaki 
-	    private JSlider sliderInitialSpeed;  	  	   
+	    private JSlider sliderSpeedValue;  	  	   
 	    private JTextField textAirResistance; //Tworzê pola niezbêdne pola tekstowe, guziki, etykiety oraz pole wyboru
-	    private JTextField textRange;
+	    private JTextField textFlightTime;	
 	    private JTextField textMaxHeight;
-	    private JTextField textFlightTime;	    
+	    private JTextField textRange;	    	        
 	    private JButton buttonRandom;
 	    private JButton buttonStart;
 	    private JLabel labelAirResistance;
 	    private JLabel labelAngleValue;
-	    private JLabel labelInitialSpeed;
+	    private JLabel labelSpeedValue;
 	    private JLabel labelFlightTime;
 	    private JLabel labelMaxHeight;
 	    private JLabel labelRange;
 	    private JLabel labelMass;
 	    private JComboBox<String> comboboxMass;
-	   
+	  
+	    //Save file
+	    private Scanner skaner;
+	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
+		private static String inFile;
 	    
 	    public Archer() throws HeadlessException 
 	    {
@@ -91,10 +99,48 @@ public class Archer extends JFrame
 	        		itemSave = new JMenuItem("Zapisz stan gry");//dodaje opcje do Menu wybrane opcje
 	        		itemSave.addActionListener(new ActionListener() 
 	        		{
-	        			@Override
+						@Override
 	        			public void actionPerformed(ActionEvent e) 
 	        			{
-	        			
+							JFileChooser chooser = new JFileChooser(); 
+        					chooser.setDialogTitle("Wybierz plik");  				
+        					int returnVal = chooser.showSaveDialog(null);
+        					if(returnVal == JFileChooser.APPROVE_OPTION)
+        					{
+        						 File file = chooser.getSelectedFile();
+        						 JOptionPane.showMessageDialog(null, "Plik zapisany pomyœlnie jako " + file);
+        						 try 
+        						 {
+        							//file_textAirResistance = ("");
+        							//file_textRange = ("");
+        								
+        							file_speedValue = labelSpeedValue.getText().trim();
+        							file_angleValue = labelAngleValue.getText().trim();
+        							file_mass = labelMass.getText().trim();
+        							file_textAirResistance = textAirResistance.getText().trim(); //zwraca jako string ??
+        							file_textFlightTime = textFlightTime.getText().trim();
+        							file_textMaxHeight = textMaxHeight.getText().trim();
+        							file_textRange = textRange.getText().trim(); //zwraca jako string ??
+        							
+        							inFile = file_angleValue + "; " + file_speedValue + "; " + file_mass + "; "
+        										+ "Opór powietrza: " + file_textAirResistance + "; "
+        										+ "Czas lotu strza³y: " + file_textFlightTime + "; "
+        										+ "Maksymalna wysokoœæ: " + file_textMaxHeight + "; "
+        										+ "Zasiêg strza³y: " + file_textRange + "; ";	
+        							      			//cos tu jszcze bêdzie		 
+        							PrintWriter pw = new PrintWriter(file);
+									skaner = new Scanner(inFile);
+									while (skaner.hasNext())
+									{
+										pw.println(skaner.nextLine());
+										pw.close();
+									}
+        						 } 
+        						 catch (FileNotFoundException e1) 
+        						 {							
+        							 e1.printStackTrace();
+        						 }
+        					}
 	        			}
 	        		});
 	        		itemLoad = new JMenuItem("Wczytaj grê");
@@ -103,7 +149,28 @@ public class Archer extends JFrame
 	        			@Override
 	        			public void actionPerformed(ActionEvent e) 
 	        			{
-	                
+	        				JFileChooser chooser = new JFileChooser(); 
+        					chooser.setDialogTitle("Wybierz plik");  				
+        					int returnVal = chooser.showSaveDialog(null);
+        					if(returnVal == JFileChooser.APPROVE_OPTION)
+        					{
+        						 File file = chooser.getSelectedFile();
+        						 try 
+        						 {
+									Scanner skaner = new Scanner(file);
+									while(skaner.hasNextLine()) 
+									{
+							            int i = skaner.nextInt();
+							            System.out.println(i);
+							        }
+							        skaner.close();
+								} 
+        						 catch (FileNotFoundException e1)
+        						 {
+									
+									e1.printStackTrace();
+								}
+        					}
 	        			}
 	        		});
 	        		itemExit = new JMenuItem("Wyjœcie");
@@ -171,19 +238,19 @@ public class Archer extends JFrame
 	        	sliderAngleValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener
 	        add(sliderAngleValue);
 	      	
-	        	labelInitialSpeed = new JLabel("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2
-	        	labelInitialSpeed.setBounds(10, 465, 250, 50); 
-	        add(labelInitialSpeed);
+	        	labelSpeedValue = new JLabel("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2
+	        	labelSpeedValue.setBounds(10, 465, 250, 50); 
+	        add(labelSpeedValue);
 	        	
-	        	sliderInitialSpeed = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
-	        	sliderInitialSpeed.setBounds(10, 500, 200, 50);
-	        	sliderInitialSpeed.setPreferredSize(new Dimension(200, 50)); 
-	        	sliderInitialSpeed.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
-	        	sliderInitialSpeed.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
-	        	sliderInitialSpeed.setPaintTicks(true);
-	        	sliderInitialSpeed.setPaintLabels(true);
-	        	sliderInitialSpeed.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
-	        add(sliderInitialSpeed);
+	        	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
+	        	sliderSpeedValue.setBounds(10, 500, 200, 50);
+	        	sliderSpeedValue.setPreferredSize(new Dimension(200, 50)); 
+	        	sliderSpeedValue.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
+	        	sliderSpeedValue.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
+	        	sliderSpeedValue.setPaintTicks(true);
+	        	sliderSpeedValue.setPaintLabels(true);
+	        	sliderSpeedValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
+	        add(sliderSpeedValue);
 	        	        		     		
 	        	
 	        	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
@@ -287,8 +354,8 @@ public class Archer extends JFrame
 		@Override
 		public void stateChanged(ChangeEvent e) 
 		{
-			speedValue = sliderInitialSpeed.getValue();//?
-			labelInitialSpeed.setText("Prêdkoœæ pocz¹tkowa strza³y: " + speedValue + " m/s");	
+			speedValue = sliderSpeedValue.getValue();//?
+			labelSpeedValue.setText("Prêdkoœæ pocz¹tkowa strza³y: " + speedValue + " m/s");	
 							
 			angleValue = sliderAngleValue.getValue();//?
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
