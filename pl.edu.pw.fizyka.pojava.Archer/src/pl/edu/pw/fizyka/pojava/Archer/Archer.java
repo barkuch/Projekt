@@ -153,7 +153,7 @@ public class Archer extends JFrame
         						 {
         							 BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         							 textAirResistance.read(input, "READING FILE :-)");
-        							 textFlightTime.read(input, "READING FILE :-)");
+        							 
         						 } 
         						 catch (Exception e1) 
         						 {
