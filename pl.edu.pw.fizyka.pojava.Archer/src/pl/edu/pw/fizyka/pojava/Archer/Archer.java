@@ -6,8 +6,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
@@ -111,7 +114,7 @@ public class Archer extends JFrame
         							file_textAirResistance = textAirResistance.getText().trim(); //zwraca jako string ??
         							file_textFlightTime = textFlightTime.getText().trim();
         							file_textMaxHeight = textMaxHeight.getText().trim();
-        							file_textRange = textRange.getText().trim(); //zwraca jako string ??
+        							file_textRange = textRange.getText().trim(); 
         							
         							inFile = file_angleValue + "; " + file_speedValue + "; " + file_mass + "; "
         										+ "Opór powietrza: " + file_textAirResistance + "; "
@@ -140,7 +143,7 @@ public class Archer extends JFrame
 	        			@Override
 	        			public void actionPerformed(ActionEvent e) 
 	        			{
-	        				/*JFileChooser chooser = new JFileChooser(); 
+	        				JFileChooser chooser = new JFileChooser(); 
         					chooser.setDialogTitle("Wybierz plik");  				
         					int returnVal = chooser.showSaveDialog(null);
         					if(returnVal == JFileChooser.APPROVE_OPTION)
@@ -148,20 +151,15 @@ public class Archer extends JFrame
         						 File file = chooser.getSelectedFile();
         						 try 
         						 {
-									Scanner skaner = new Scanner(file);
-									while(skaner.hasNextLine()) 
-									{
-							            int i = skaner.nextInt();
-							            System.out.println(i);
-							        }
-							        skaner.close();
-								} 
-        						 catch (FileNotFoundException e1)
+        							 BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+        							 textAirResistance.read(input, "READING FILE :-)");
+        							 textFlightTime.read(input, "READING FILE :-)");
+        						 } 
+        						 catch (Exception e1) 
         						 {
-									
-									e1.printStackTrace();
-								}
-        					}*/
+          							e1.printStackTrace();
+        						 }
+      						}       							
 	        			}
 	        		});
 	        		itemExit = new JMenuItem("Wyjœcie");
