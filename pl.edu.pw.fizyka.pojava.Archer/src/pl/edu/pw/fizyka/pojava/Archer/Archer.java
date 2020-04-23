@@ -90,7 +90,7 @@ public class Archer extends JFrame
 	      //Menu
 	        menuBar = new JMenuBar();   
 	        	menu = new JMenu("Menu");	 		        		
-	        		itemSave = new JMenuItem("Zapisz stan gry");//dodaje opcje do Menu wybrane opcje
+	        		itemSave = new JMenuItem("Zapisz dan");//dodaje opcje do Menu wybrane opcje
 	        		itemSave.addActionListener(new ActionListener() 
 	        		{
 						@Override
@@ -137,7 +137,7 @@ public class Archer extends JFrame
         					}
 	        			}
 	        		});
-	        		itemLoad = new JMenuItem("Wczytaj grê");
+	        		itemLoad = new JMenuItem("Wczytaj dane");
 	        		itemLoad.addActionListener(new ActionListener() 
 	        		{
 	        			@Override
