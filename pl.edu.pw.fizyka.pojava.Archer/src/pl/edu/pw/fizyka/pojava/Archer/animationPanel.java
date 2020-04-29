@@ -41,6 +41,7 @@ public class animationPanel extends JPanel
         // SKALOWANIE WKLEJANEGO OBRAZKA:
         //g2d.drawImage(image, 50, 50, image.getWidth()/3, image.getHeight()/3, this);
     }
+    
 }
 
 

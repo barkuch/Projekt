@@ -351,10 +351,5 @@ public class Archer extends JFrame
 	} 
 	
 		
-	public static void main(String[] args) 
-	{
-		Archer frame = new Archer(); 
-        frame.setVisible(true);
-	}
-
+	
 }
