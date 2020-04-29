@@ -53,7 +53,7 @@ public class Archer extends JFrame
 	    private JMenuItem itemAuthors;
 
 	    //panels
-	    private JPanel animationPanel;  //Tworzê 2 panele
+	   // private JPanel animationPanel;  //Tworzê 2 panele
 	    private JPanel controlPanel;
 	    
 	    //bottom panel
@@ -90,7 +90,7 @@ public class Archer extends JFrame
 	      //Menu
 	        menuBar = new JMenuBar();   
 	        	menu = new JMenu("Menu");	 		        		
-	        		itemSave = new JMenuItem("Zapisz dan");//dodaje opcje do Menu wybrane opcje
+	        		itemSave = new JMenuItem("Zapisz dane");//dodaje opcje do Menu wybrane opcje
 	        		itemSave.addActionListener(new ActionListener() 
 	        		{
 						@Override
