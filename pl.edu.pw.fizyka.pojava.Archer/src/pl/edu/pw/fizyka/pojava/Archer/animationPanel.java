@@ -11,10 +11,11 @@ public class animationPanel extends JPanel
 {
  
     private BufferedImage image;
- 
+   // ProstaAnimacja animacja = new ProstaAnimacja();
     public animationPanel() 
     {
-        super();
+       
+    	super();
         
         // Plik umieszczony w podpakiecie "obrazki"
         URL resource = getClass().getResource("background.jpg");        
@@ -41,6 +42,7 @@ public class animationPanel extends JPanel
         // SKALOWANIE WKLEJANEGO OBRAZKA:
         //g2d.drawImage(image, 50, 50, image.getWidth()/3, image.getHeight()/3, this);
     }
+    
     
 }
 

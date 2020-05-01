@@ -206,7 +206,7 @@ public class Archer extends JFrame
 	        animationPanel obrazek = new animationPanel();			
 			obrazek.setBounds(1, 1, 1180, 400);
 			add(obrazek);
-	        
+	     //   add(ProstaAnimacja);
 	        
 	        
 	        
