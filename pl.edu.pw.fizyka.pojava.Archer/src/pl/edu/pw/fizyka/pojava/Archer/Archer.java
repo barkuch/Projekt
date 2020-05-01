@@ -203,10 +203,10 @@ public class Archer extends JFrame
 			//setLayout(new FlowLayout());
 			
 	        //panel z animacj¹
-	        animationPanel obrazek = new animationPanel();			
+	        backgroundPanel obrazek = new backgroundPanel();			
 			obrazek.setBounds(1, 1, 1180, 400);
 			add(obrazek);
-	     //   add(ProstaAnimacja);
+	 
 	        
 	        
 	        
@@ -330,6 +330,8 @@ public class Archer extends JFrame
         				        			
         				range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
         				textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
+        			
+        			
         			}
         		});
         	add(buttonStart); 	       	      	   
