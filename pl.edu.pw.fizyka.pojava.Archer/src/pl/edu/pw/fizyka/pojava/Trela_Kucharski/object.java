@@ -75,27 +75,13 @@ public class object extends GlobalPosition
 			velY = 5;
 		}
 	}
-	public void keyReleased(KeyEvent e)
+
+	public void reset()
 	{
-int key = e.getKeyCode();
 		
-		if(key== KeyEvent.VK_RIGHT)
-		{
-			velX = 0;
-		}
-		else if(key == KeyEvent.VK_LEFT)
-		{
-			velX = 0;
-		}
-		else if(key == KeyEvent.VK_UP)
-		{
-			velY = 0;
-		}
-		else if(key == KeyEvent.VK_DOWN)
-		{
-			velY = 0;
-		}
 	}
+	
+	
 	public void draw(Graphics2D g2d)
 	{
 		g2d.drawImage(getPlayerImage(), x, y, null);

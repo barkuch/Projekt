@@ -359,7 +359,7 @@ public class controlPanel extends JFrame implements Runnable
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-				//	animationPanel.object.Reset(25,360);			
+				//animationPanel.object.reset(25,360);			
 
 				}
 			});
