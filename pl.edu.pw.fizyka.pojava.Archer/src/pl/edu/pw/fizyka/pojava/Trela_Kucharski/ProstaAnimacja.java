@@ -1,4 +1,4 @@
-package pl.edu.pw.fizyka.pojava.Archer;
+package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 import java.awt.Color;
 import java.awt.Dimension;
