@@ -11,7 +11,7 @@ import pl.edu.pw.fizyka.pojava.Trela_Kucharski.GlobalPosition;
 public class object extends GlobalPosition
 {
 
-	private String plyerimage = "Arrow.png";
+	private String plyerimage = "/images/Arrow.png";
 	
 	int velX = 10; //wartosic ktre beda ze sliderow
 	int velY = 0;

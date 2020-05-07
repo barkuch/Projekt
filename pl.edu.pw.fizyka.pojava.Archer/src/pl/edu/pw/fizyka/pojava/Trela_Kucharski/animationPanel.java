@@ -16,7 +16,7 @@ public class animationPanel extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 
-	private String background = "background.png";
+	private String background = "/images/background.png";
 	
 	int intHeight; 
 	int intWidth;
