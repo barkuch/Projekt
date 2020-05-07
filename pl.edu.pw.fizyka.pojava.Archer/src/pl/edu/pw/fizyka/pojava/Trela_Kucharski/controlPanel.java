@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class Archer extends JFrame 
+public class controlPanel extends JFrame 
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
@@ -79,7 +79,7 @@ public class Archer extends JFrame
 	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
 		private static String inFile;
 	    
-	    public Archer() throws HeadlessException 
+	    public controlPanel() throws HeadlessException 
 	    {
 	    	this.setSize(1200, 620);  //ustawiam rozmiar ramki
 	    	setTitle("Archer");		//ustawiam tytu³ ramki
@@ -203,9 +203,7 @@ public class Archer extends JFrame
 			//setLayout(new FlowLayout());
 			
 	        //panel z animacj¹
-	        backgroundPanel obrazek = new backgroundPanel();			
-			obrazek.setBounds(1, 1, 1180, 400);
-			add(obrazek);
+	        
 	 
 	        
 	        

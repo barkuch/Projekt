@@ -5,7 +5,7 @@ public class main
 
 	public static void main(String[] args) 
 	{
-		Archer frame = new Archer(); 
+		controlPanel frame = new controlPanel(); 
         frame.setVisible(true);
 
 	}
