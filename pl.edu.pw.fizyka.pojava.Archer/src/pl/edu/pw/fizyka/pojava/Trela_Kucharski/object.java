@@ -13,7 +13,7 @@ public class object extends GlobalPosition
 
 	private String plyerimage = "/images/Arrow.png";
 	
-	int velX = 10; //wartosic ktre beda ze sliderow
+	int velX = 5; //wartosic ktre beda ze sliderow
 	int velY = 0;
 	
 	

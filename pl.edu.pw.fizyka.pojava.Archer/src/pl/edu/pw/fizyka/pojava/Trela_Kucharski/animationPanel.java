@@ -31,8 +31,7 @@ public class animationPanel extends JPanel implements ActionListener
 		
 		gamelooptimer = new Timer(10, this); //ze co sto milisknd sie powatarza		
 		//gamelooptimer.start();
-
-		//addKeyListener(new KeyInput(p));		
+		
 	}
 
 	public void paint(Graphics g)

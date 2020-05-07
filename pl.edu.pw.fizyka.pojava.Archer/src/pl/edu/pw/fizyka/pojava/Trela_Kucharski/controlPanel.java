@@ -4,14 +4,21 @@ package  pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 
-public class controlPanel extends JFrame 
+public class controlPanel extends JFrame implements Runnable
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
@@ -37,23 +44,22 @@ public class controlPanel extends JFrame
 	    private double maxheight;
 	    private double flighttime;	   	 
 	    	   
-/*	    //menu
+	    //menu
 	    private JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
 	    private JMenu menu;
 	    private JMenu more;
 	    private JMenuItem itemExit; //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
-	    private JMenuItem itemSave;
-	   
+	    private JMenuItem itemSave;	   
 	    private JMenuItem itemLoad;
 	    private JMenuItem itemAuthors;
-*/
+
 	    //panels
-	    JFrame frame;		//Tworzê 2 panele
+	    JFrame frame;			//Tworzê 2 panele
 		animationPanel animationPanel;
 		JPanel buttonsPanel;
 	    
-		int intWidth = 1200; 
-		int intHeight = 620; 
+		public int intWidth = 1195; 
+		public int intHeight = 640; 
 		
 		//bottom panel
 	     JSlider sliderAngleValue;  //Tworzê 2 suwaki 
@@ -75,11 +81,11 @@ public class controlPanel extends JFrame
 	     JLabel labelMass;
 	     JComboBox<String> comboboxMass;
 	  
-/*	    //Save file
+	    //Save file
 	    private Scanner skaner;
 	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
 		private static String inFile;
-*/	    
+	    
 	    public controlPanel() 
 	    {
 	    	frame = new JFrame("Archer");
@@ -87,8 +93,9 @@ public class controlPanel extends JFrame
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			//frame.setResizable(false);
 			frame.setVisible(true);
+	     
 			
-/*	      //Menu
+			//Menu
 	        menuBar = new JMenuBar();   
 	        	menu = new JMenu("Menu");	 		        		
 	        		itemSave = new JMenuItem("Zapisz dane");//dodaje opcje do Menu wybrane opcje
@@ -190,8 +197,8 @@ public class controlPanel extends JFrame
 				more.add(itemAuthors);	//dodaje elementy do More
 	        menuBar.add(menu); //dodaje opcje do paska
 	        menuBar.add(more);
-	        this.setJMenuBar(menuBar);
-*/	        
+	       
+	        
 	        
 			//PANEL ANIMACJI
 			animationPanel = new animationPanel();
@@ -205,22 +212,15 @@ public class controlPanel extends JFrame
 	 
 			frame.add(animationPanel);
 			frame.add(buttonsPanel);
+	         frame.setJMenuBar(menuBar);
 	        
-	        
-	        //STEROWANIE
-			/*
-			JMenuBar menuBar = new JMenuBar();
-			JMenu menu = new JMenu("Menu");
-			menuBar.add(menu);
-			frame.setJMenuBar(menuBar)
-			*/
-	        
+	        //STEROWANIE        
 			labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1
-	    	labelAngleValue.setBounds(10, 400, 200, 50); //ustawiam po³o¿enie etykiety
+	    	labelAngleValue.setBounds(10, 410, 200, 50); //ustawiam po³o¿enie etykiety
 	    	buttonsPanel.add(labelAngleValue); 	
 			
 	    	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);
-	    	sliderAngleValue.setBounds(10, 435, 200, 50); //ustawiam po³o¿enie suwaka
+	    	sliderAngleValue.setBounds(10, 445, 200, 50); //ustawiam po³o¿enie suwaka
 	    	sliderAngleValue.setPreferredSize(new Dimension(200, 50));  //rozmiar suwaka
 	    	sliderAngleValue.setMajorTickSpacing(30);  //wartoœci na podzia³ce co 30
 	    	sliderAngleValue.setMinorTickSpacing(5);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 5
@@ -230,11 +230,11 @@ public class controlPanel extends JFrame
 	    	buttonsPanel.add(sliderAngleValue);
 	  	
 	    	labelSpeedValue = new JLabel("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2
-	    	labelSpeedValue.setBounds(10, 475, 250, 50); 
+	    	labelSpeedValue.setBounds(10, 485, 250, 50); 
 	    	buttonsPanel.add(labelSpeedValue);
 	    	
 	    	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
-	    	sliderSpeedValue.setBounds(10, 510, 200, 50);
+	    	sliderSpeedValue.setBounds(10, 520, 200, 50);
 	    	sliderSpeedValue.setPreferredSize(new Dimension(200, 50)); 
 	    	sliderSpeedValue.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
 	    	sliderSpeedValue.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
@@ -245,11 +245,11 @@ public class controlPanel extends JFrame
 	    	        		     		
 	    	
 	    	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
-	    	labelMass.setBounds(230, 400, 200, 50);
+	    	labelMass.setBounds(230, 410, 200, 50);
 	    	buttonsPanel.add(labelMass);
 	    	  
 	    	comboboxMass = new JComboBox<String>(); //dodaje pole wyboru oraz tworzê mu opcje
-	    	comboboxMass.setBounds(230, 435, 165, 20); //ustawiam po³o¿enie pola wyboru
+	    	comboboxMass.setBounds(230, 445, 165, 20); //ustawiam po³o¿enie pola wyboru
 	    	comboboxMass.addItem("stalowa");
 	    	comboboxMass.addItem("aluminiowa");
 	    	comboboxMass.addItem("tytanowa");
@@ -278,13 +278,13 @@ public class controlPanel extends JFrame
 	    	buttonsPanel.add(comboboxMass);
 	 
 	    	labelAirResistance = new JLabel("Opór powietrza");	       
-	    	labelAirResistance.setBounds(420, 400, 100, 50);	
+	    	labelAirResistance.setBounds(420, 410, 100, 50);	
 	    	buttonsPanel.add(labelAirResistance); 	 
 	    	textAirResistance = new JTextField("");  //pole tekstowe, w którym wyœwietlaæ siê bêdzie opór powietrza
-	    	textAirResistance.setBounds(420, 435, 100, 30);
+	    	textAirResistance.setBounds(420, 445, 100, 30);
 	    	buttonsPanel.add(textAirResistance);
 	   		buttonRandom = new JButton("Losuj");  //przycisk Losuj, który generuje liczbê z zakresu 1-100
-	   		buttonRandom.setBounds(420, 465, 100, 30);	
+	   		buttonRandom.setBounds(420, 475, 100, 30);	
 	    	buttonRandom.addActionListener(new ActionListener() 
 	    	{
 	    		@Override
@@ -298,28 +298,28 @@ public class controlPanel extends JFrame
 	    	buttonsPanel.add(buttonRandom);
 	    
 	    	labelFlightTime = new JLabel("Czas lotu strza³y");	        
-	    	labelFlightTime.setBounds(550, 400, 200, 50);	
+	    	labelFlightTime.setBounds(550, 410, 200, 50);	
 	    	buttonsPanel.add(labelFlightTime); 	        
 	    	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y (korzystamy ze wzorów ze specyfikacji)
-	    	textFlightTime.setBounds(550, 435, 150, 30);	
+	    	textFlightTime.setBounds(550, 445, 150, 30);	
 	    	buttonsPanel.add(textFlightTime);
 	   
 	    	labelMaxHeight = new JLabel("Maksymalna wysokoœæ");	
-	    	labelMaxHeight.setBounds(720, 400, 200, 50);
+	    	labelMaxHeight.setBounds(720, 410, 200, 50);
 	    	buttonsPanel.add(labelMaxHeight); 	       
 	    	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ (korzystamy ze wzorów ze specyfikacji)
-	    	textMaxHeight.setBounds(720, 435, 150, 30);
+	    	textMaxHeight.setBounds(720, 445, 150, 30);
 	    	buttonsPanel.add(textMaxHeight);
 	    
 	 		labelRange = new JLabel("Zasiêg strza³y");
-	 		labelRange.setBounds(890, 400, 200, 50);
+	 		labelRange.setBounds(890, 410, 200, 50);
 	 		buttonsPanel.add(labelRange); 
 	    	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y (korzystamy ze wzorów ze specyfikacji)
-	    	textRange.setBounds(890, 435, 150, 30);
+	    	textRange.setBounds(890, 445, 150, 30);
 	    	buttonsPanel.add(textRange);
 	    	      
 	    	buttonStart = new JButton("Start");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
-	    	buttonStart.setBounds(1060, 420, 115, 40);		
+	    	buttonStart.setBounds(1060, 430, 115, 40);		
 			buttonStart.addActionListener(new ActionListener() 
 			{
 				@Override
@@ -341,7 +341,7 @@ public class controlPanel extends JFrame
 			buttonsPanel.add(buttonStart); 
 			
 			buttonStop = new JButton("Stop");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
-	    	buttonStop.setBounds(1060, 465, 115, 40);		
+	    	buttonStop.setBounds(1060, 475, 115, 40);		
 			buttonStop.addActionListener(new ActionListener() 
 			{
 				@Override
@@ -353,7 +353,7 @@ public class controlPanel extends JFrame
 			buttonsPanel.add(buttonStop); 
 			
 			buttonRestart = new JButton("Reset");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
-	    	buttonRestart.setBounds(1060, 510, 115, 40);		
+	    	buttonRestart.setBounds(1060, 520, 115, 40);		
 			buttonRestart.addActionListener(new ActionListener() 
 			{
 				@Override
@@ -379,6 +379,14 @@ public class controlPanel extends JFrame
 			angleValue = sliderAngleValue.getValue();//?
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
 		}	
+	}
+
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	} 
 	
 		
