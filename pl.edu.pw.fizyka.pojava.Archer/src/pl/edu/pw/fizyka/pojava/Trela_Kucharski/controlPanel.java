@@ -1,23 +1,14 @@
 package  pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import mainPackage.animationPanel;
-import mainPackage.controlPanel.SliderChangeListener;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.Random;
-import java.util.Scanner;
 
 
 public class controlPanel extends JFrame 
@@ -343,7 +334,7 @@ public class controlPanel extends JFrame
 					range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
 					textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
 					
-					mainPackage.animationPanel.gamelooptimer.start();			
+					pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.start();			
 				
 				}
 			});
@@ -356,7 +347,7 @@ public class controlPanel extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-					mainPackage.animationPanel.gamelooptimer.stop();			
+					pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop();			
 				}
 			});
 			buttonsPanel.add(buttonStop); 
