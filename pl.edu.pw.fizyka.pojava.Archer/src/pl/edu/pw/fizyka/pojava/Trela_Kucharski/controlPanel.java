@@ -4,6 +4,10 @@ package  pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import mainPackage.animationPanel;
+import mainPackage.controlPanel.SliderChangeListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
@@ -42,7 +46,7 @@ public class controlPanel extends JFrame
 	    private double maxheight;
 	    private double flighttime;	   	 
 	    	   
-	    //menu
+/*	    //menu
 	    private JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
 	    private JMenu menu;
 	    private JMenu more;
@@ -51,43 +55,49 @@ public class controlPanel extends JFrame
 	   
 	    private JMenuItem itemLoad;
 	    private JMenuItem itemAuthors;
-
+*/
 	    //panels
-	   // private JPanel animationPanel;  //Tworzê 2 panele
-	    private JPanel controlPanel;
+	    JFrame frame;		//Tworzê 2 panele
+		animationPanel animationPanel;
+		JPanel buttonsPanel;
 	    
-	    //bottom panel
-	    private JSlider sliderAngleValue;  //Tworzê 2 suwaki 
-	    private JSlider sliderSpeedValue;  	  	   
-	    private JTextField textAirResistance; //Tworzê pola niezbêdne pola tekstowe, guziki, etykiety oraz pole wyboru
-	    private JTextField textFlightTime;	
-	    private JTextField textMaxHeight;
-	    private JTextField textRange;	    	        
-	    private JButton buttonRandom;
-	    private JButton buttonStart;
-	    private JLabel labelAirResistance;
-	    private JLabel labelAngleValue;
-	    private JLabel labelSpeedValue;
-	    private JLabel labelFlightTime;
-	    private JLabel labelMaxHeight;
-	    private JLabel labelRange;
-	    private JLabel labelMass;
-	    private JComboBox<String> comboboxMass;
+		int intWidth = 1200; 
+		int intHeight = 620; 
+		
+		//bottom panel
+	     JSlider sliderAngleValue;  //Tworzê 2 suwaki 
+	     JSlider sliderSpeedValue;  	  	   
+	     JTextField textAirResistance; //Tworzê pola niezbêdne pola tekstowe, guziki, etykiety oraz pole wyboru
+	     JTextField textFlightTime;	
+	     JTextField textMaxHeight;
+	     JTextField textRange;	    	        
+	     JButton buttonRandom;
+	     JButton buttonStart;
+	     JButton buttonStop;
+	     JButton buttonRestart;
+	     JLabel labelAirResistance;
+	     JLabel labelAngleValue;
+	     JLabel labelSpeedValue;
+	     JLabel labelFlightTime;
+	     JLabel labelMaxHeight;
+	     JLabel labelRange;
+	     JLabel labelMass;
+	     JComboBox<String> comboboxMass;
 	  
-	    //Save file
+/*	    //Save file
 	    private Scanner skaner;
 	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
 		private static String inFile;
-	    
-	    public controlPanel() throws HeadlessException 
+*/	    
+	    public controlPanel() 
 	    {
-	    	this.setSize(1200, 620);  //ustawiam rozmiar ramki
-	    	setTitle("Archer");		//ustawiam tytu³ ramki
-	    	this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	        setLayout(null);
-	       // this.setResizable(false);  //u¿ytkownik nie mo¿e zmieniæ rozmiaru ramki
-
-	      //Menu
+	    	frame = new JFrame("Archer");
+			frame.setSize(intWidth, intHeight);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//frame.setResizable(false);
+			frame.setVisible(true);
+			
+/*	      //Menu
 	        menuBar = new JMenuBar();   
 	        	menu = new JMenu("Menu");	 		        		
 	        		itemSave = new JMenuItem("Zapisz dane");//dodaje opcje do Menu wybrane opcje
@@ -190,149 +200,179 @@ public class controlPanel extends JFrame
 	        menuBar.add(menu); //dodaje opcje do paska
 	        menuBar.add(more);
 	        this.setJMenuBar(menuBar);
+*/	        
 	        
-	        
-	        //animationPanel = new JPanel();
-	       
-	        //animationPanel.setBounds(1, 1, 1180, 400); //ustawiam rozmiar panelu	        	        
-	        //animationPanel.setBackground(Color.white); //ustawiam kolor panelu
-	        //add(animationPanel);
-	       // this.add(animationPanel, BorderLayout.CENTER); //wykorzystanie BorderLayoutu
-	       
-	        //setDefaultCloseOperation(EXIT_ON_CLOSE);
-			//setLayout(new FlowLayout());
+			//PANEL ANIMACJI
+			animationPanel = new animationPanel();
+			animationPanel.setLayout(null);
+			animationPanel.setBounds(0, 0, intWidth, intHeight-215);
 			
-	        //panel z animacj¹
-	        
+			//PANEL STEROWANIA
+			buttonsPanel = new JPanel();
+			buttonsPanel.setLayout(null);
+			buttonsPanel.setSize(intWidth, intHeight);
 	 
+			frame.add(animationPanel);
+			frame.add(buttonsPanel);
 	        
 	        
+	        //STEROWANIE
+			/*
+			JMenuBar menuBar = new JMenuBar();
+			JMenu menu = new JMenu("Menu");
+			menuBar.add(menu);
+			frame.setJMenuBar(menuBar)
+			*/
 	        
-	        //panel ustawieñ
-	        controlPanel = new JPanel();	       	        				
-	        	labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1
-	        	labelAngleValue.setBounds(10, 390, 200, 50); //ustawiam po³o¿enie etykiety
-	        add(labelAngleValue); 	        
-	        
-	        	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);
-	        	sliderAngleValue.setBounds(10, 425, 200, 50); //ustawiam po³o¿enie suwaka
-	        	sliderAngleValue.setPreferredSize(new Dimension(200, 50));  //rozmiar suwaka
-	        	sliderAngleValue.setMajorTickSpacing(30);  //wartoœci na podzia³ce co 30
-	        	sliderAngleValue.setMinorTickSpacing(5);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 5
-	        	sliderAngleValue.setPaintTicks(true);
-	        	sliderAngleValue.setPaintLabels(true);
-	        	sliderAngleValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener
-	        add(sliderAngleValue);
-	      	
-	        	labelSpeedValue = new JLabel("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2
-	        	labelSpeedValue.setBounds(10, 465, 250, 50); 
-	        add(labelSpeedValue);
-	        	
-	        	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
-	        	sliderSpeedValue.setBounds(10, 500, 200, 50);
-	        	sliderSpeedValue.setPreferredSize(new Dimension(200, 50)); 
-	        	sliderSpeedValue.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
-	        	sliderSpeedValue.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
-	        	sliderSpeedValue.setPaintTicks(true);
-	        	sliderSpeedValue.setPaintLabels(true);
-	        	sliderSpeedValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
-	        add(sliderSpeedValue);
-	        	        		     		
-	        	
-	        	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
-	        	labelMass.setBounds(230, 390, 200, 50);
-	        	add(labelMass);
-	        	  
-	        	comboboxMass = new JComboBox<String>(); //dodaje pole wyboru oraz tworzê mu opcje
-	        	comboboxMass.setBounds(230, 425, 165, 20); //ustawiam po³o¿enie pola wyboru
-	        	comboboxMass.addItem("stalowa");
-	        	comboboxMass.addItem("aluminiowa");
-	        	comboboxMass.addItem("tytanowa");
-	        	comboboxMass.addActionListener(new ActionListener() 
-	        	{
-	        		@Override
-	        		public void actionPerformed(ActionEvent e) 
-	        		{		       			
-	        			if (comboboxMass.getSelectedItem().equals("stalowa"))	      			
-	        			{	        				
-	        				mass = mass1;
-	        				labelMass.setText("Masa wybranej strza³y: " + mass1 + " kg");	//7 kg
-	        			}
-	        			else if (comboboxMass.getSelectedItem().equals("aluminiowa"))	      			
-	        			{
-	        				mass = mass2;
-	        				labelMass.setText("Masa wybranej strza³y: " + mass2 + " kg");	//2.4 kg
-	        			}
-	        			else if (comboboxMass.getSelectedItem().equals("tytanowa"))	      			
-	        			{
-	        				mass = mass3;
-	        				labelMass.setText("Masa wybranej strza³y: " + mass3 + " kg");	//13 kg
-	        			}
-	        		}
-	        	});
-	        add(comboboxMass);
-	     
-	        	labelAirResistance = new JLabel("Opór powietrza");	       
-	        	labelAirResistance.setBounds(420, 390, 100, 50);	
-		    add(labelAirResistance); 	 
-		    	textAirResistance = new JTextField("");  //pole tekstowe, w którym wyœwietlaæ siê bêdzie opór powietrza
-		    	textAirResistance.setBounds(420, 425, 100, 30);
-	       	add(textAirResistance);
-	       		buttonRandom = new JButton("Losuj");  //przycisk Losuj, który generuje liczbê z zakresu 1-100
-	       		buttonRandom.setBounds(420, 455, 100, 30);	
-	        	buttonRandom.addActionListener(new ActionListener() 
-	        	{
-	        		@Override
-	        		public void actionPerformed(ActionEvent e) 
-	        		{	        			
-	        			Random rand = new Random();
-	        		    resistance = rand.nextInt(100)+1;	        			      			
-	        			textAirResistance.setText(String.valueOf(resistance)); //wyswietli wylosowan¹ wartoœæ oporu
-	        		}	        				        		
-	        	});
-	        add(buttonRandom);
-	        
-	        	labelFlightTime = new JLabel("Czas lotu strza³y");	        
-	        	labelFlightTime.setBounds(550, 390, 200, 50);	
-	        add(labelFlightTime); 	        
-	        	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y (korzystamy ze wzorów ze specyfikacji)
-	        	textFlightTime.setBounds(550, 425, 150, 30);	
-	        add(textFlightTime);
-	       
-	        	labelMaxHeight = new JLabel("Maksymalna wysokoœæ");	
-	        	labelMaxHeight.setBounds(720, 390, 200, 50);
-	        add(labelMaxHeight); 	       
-	        	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ (korzystamy ze wzorów ze specyfikacji)
-	        	textMaxHeight.setBounds(720, 425, 150, 30);
-	        add(textMaxHeight);
-	        
-	     		labelRange = new JLabel("Zasiêg strza³y");
-	     		labelRange.setBounds(890, 390, 200, 50);
-	        add(labelRange); 
-	        	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y (korzystamy ze wzorów ze specyfikacji)
-	        	textRange.setBounds(890, 425, 150, 30);
-	        add(textRange);
-	        	      
-	        	buttonStart = new JButton("Start/Stop");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
-	        	buttonStart.setBounds(1060, 425, 120, 50);		
-        		buttonStart.addActionListener(new ActionListener() 
-        		{
-        			@Override
-        			public void actionPerformed(ActionEvent e) //Math.sin(Math.toRadians(cos)) - wzor zeby z tego co mamy zrobic to co chcemy xd
-        			{					
-        				flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory
-        				textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
-        				        			       				        				
-        				maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / 2 * g;
-        				textMaxHeight.setText(String.valueOf(String.format("%.02f", maxheight) + " [m]")); 
-        				        			
-        				range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
-        				textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
-        			
-        			
-        			}
-        		});
-        	add(buttonStart); 	       	      	   
+			labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1
+	    	labelAngleValue.setBounds(10, 400, 200, 50); //ustawiam po³o¿enie etykiety
+	    	buttonsPanel.add(labelAngleValue); 	
+			
+	    	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);
+	    	sliderAngleValue.setBounds(10, 435, 200, 50); //ustawiam po³o¿enie suwaka
+	    	sliderAngleValue.setPreferredSize(new Dimension(200, 50));  //rozmiar suwaka
+	    	sliderAngleValue.setMajorTickSpacing(30);  //wartoœci na podzia³ce co 30
+	    	sliderAngleValue.setMinorTickSpacing(5);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 5
+	    	sliderAngleValue.setPaintTicks(true);
+	    	sliderAngleValue.setPaintLabels(true);
+	    	sliderAngleValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener
+	    	buttonsPanel.add(sliderAngleValue);
+	  	
+	    	labelSpeedValue = new JLabel("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2
+	    	labelSpeedValue.setBounds(10, 475, 250, 50); 
+	    	buttonsPanel.add(labelSpeedValue);
+	    	
+	    	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
+	    	sliderSpeedValue.setBounds(10, 510, 200, 50);
+	    	sliderSpeedValue.setPreferredSize(new Dimension(200, 50)); 
+	    	sliderSpeedValue.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
+	    	sliderSpeedValue.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
+	    	sliderSpeedValue.setPaintTicks(true);
+	    	sliderSpeedValue.setPaintLabels(true);
+	    	sliderSpeedValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
+	    	buttonsPanel.add(sliderSpeedValue);
+	    	        		     		
+	    	
+	    	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
+	    	labelMass.setBounds(230, 400, 200, 50);
+	    	buttonsPanel.add(labelMass);
+	    	  
+	    	comboboxMass = new JComboBox<String>(); //dodaje pole wyboru oraz tworzê mu opcje
+	    	comboboxMass.setBounds(230, 435, 165, 20); //ustawiam po³o¿enie pola wyboru
+	    	comboboxMass.addItem("stalowa");
+	    	comboboxMass.addItem("aluminiowa");
+	    	comboboxMass.addItem("tytanowa");
+	    	comboboxMass.addActionListener(new ActionListener() 
+	    	{
+	    		@Override
+	    		public void actionPerformed(ActionEvent e) 
+	    		{		       			
+	    			if (comboboxMass.getSelectedItem().equals("stalowa"))	      			
+	    			{	        				
+	    				mass = mass1;
+	    				labelMass.setText("Masa wybranej strza³y: " + mass1 + " kg");	//7 kg
+	    			}
+	    			else if (comboboxMass.getSelectedItem().equals("aluminiowa"))	      			
+	    			{
+	    				mass = mass2;
+	    				labelMass.setText("Masa wybranej strza³y: " + mass2 + " kg");	//2.4 kg
+	    			}
+	    			else if (comboboxMass.getSelectedItem().equals("tytanowa"))	      			
+	    			{
+	    				mass = mass3;
+	    				labelMass.setText("Masa wybranej strza³y: " + mass3 + " kg");	//13 kg
+	    			}
+	    		}
+	    	});
+	    	buttonsPanel.add(comboboxMass);
+	 
+	    	labelAirResistance = new JLabel("Opór powietrza");	       
+	    	labelAirResistance.setBounds(420, 400, 100, 50);	
+	    	buttonsPanel.add(labelAirResistance); 	 
+	    	textAirResistance = new JTextField("");  //pole tekstowe, w którym wyœwietlaæ siê bêdzie opór powietrza
+	    	textAirResistance.setBounds(420, 435, 100, 30);
+	    	buttonsPanel.add(textAirResistance);
+	   		buttonRandom = new JButton("Losuj");  //przycisk Losuj, który generuje liczbê z zakresu 1-100
+	   		buttonRandom.setBounds(420, 465, 100, 30);	
+	    	buttonRandom.addActionListener(new ActionListener() 
+	    	{
+	    		@Override
+	    		public void actionPerformed(ActionEvent e) 
+	    		{	        			
+	    			Random rand = new Random();
+	    		    resistance = rand.nextInt(100)+1;	        			      			
+	    			textAirResistance.setText(String.valueOf(resistance)); //wyswietli wylosowan¹ wartoœæ oporu
+	    		}	        				        		
+	    	});
+	    	buttonsPanel.add(buttonRandom);
+	    
+	    	labelFlightTime = new JLabel("Czas lotu strza³y");	        
+	    	labelFlightTime.setBounds(550, 400, 200, 50);	
+	    	buttonsPanel.add(labelFlightTime); 	        
+	    	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y (korzystamy ze wzorów ze specyfikacji)
+	    	textFlightTime.setBounds(550, 435, 150, 30);	
+	    	buttonsPanel.add(textFlightTime);
+	   
+	    	labelMaxHeight = new JLabel("Maksymalna wysokoœæ");	
+	    	labelMaxHeight.setBounds(720, 400, 200, 50);
+	    	buttonsPanel.add(labelMaxHeight); 	       
+	    	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ (korzystamy ze wzorów ze specyfikacji)
+	    	textMaxHeight.setBounds(720, 435, 150, 30);
+	    	buttonsPanel.add(textMaxHeight);
+	    
+	 		labelRange = new JLabel("Zasiêg strza³y");
+	 		labelRange.setBounds(890, 400, 200, 50);
+	 		buttonsPanel.add(labelRange); 
+	    	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y (korzystamy ze wzorów ze specyfikacji)
+	    	textRange.setBounds(890, 435, 150, 30);
+	    	buttonsPanel.add(textRange);
+	    	      
+	    	buttonStart = new JButton("Start");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
+	    	buttonStart.setBounds(1060, 420, 115, 40);		
+			buttonStart.addActionListener(new ActionListener() 
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) //Math.sin(Math.toRadians(cos)) - wzor zeby z tego co mamy zrobic to co chcemy xd
+				{					
+					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory
+					textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
+					        			       				        				
+					maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / 2 * g;
+					textMaxHeight.setText(String.valueOf(String.format("%.02f", maxheight) + " [m]")); 
+					        			
+					range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
+					textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
+					
+					mainPackage.animationPanel.gamelooptimer.start();			
+				
+				}
+			});
+			buttonsPanel.add(buttonStart); 
+			
+			buttonStop = new JButton("Stop");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
+	    	buttonStop.setBounds(1060, 465, 115, 40);		
+			buttonStop.addActionListener(new ActionListener() 
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{					
+					mainPackage.animationPanel.gamelooptimer.stop();			
+				}
+			});
+			buttonsPanel.add(buttonStop); 
+			
+			buttonRestart = new JButton("Reset");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
+	    	buttonRestart.setBounds(1060, 510, 115, 40);		
+			buttonRestart.addActionListener(new ActionListener() 
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{					
+				//	animationPanel.object.Reset(25,360);			
+
+				}
+			});
+			buttonsPanel.add(buttonRestart); 	       	      	   
 	    }
 	    
 	    
