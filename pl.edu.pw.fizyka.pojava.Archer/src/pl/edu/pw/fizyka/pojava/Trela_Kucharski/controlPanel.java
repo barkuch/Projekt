@@ -378,8 +378,7 @@ public class controlPanel extends JFrame
 							
 			angleValue = sliderAngleValue.getValue();//?
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
-		
-		
+				
 			animationPanel.arrow.Vx = Vx(speedValue, angleValue);
 			animationPanel.arrow.Vy = Vy(speedValue, angleValue);
 		}	
