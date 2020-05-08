@@ -87,15 +87,17 @@ public class ControlPanel extends JFrame
 	  
 	    //Save file
 	    private Scanner skaner;
-	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
-		private static String inFile;
+	    private String file_speedValue, file_angleValue, file_mass, 
+	    					file_textAirResistance, file_textFlightTime, 
+	    						file_textMaxHeight, file_textRange;
+		
+	    private static String inFile;
 	    
 	    public ControlPanel() 
 	    {
 	    	frame = new JFrame("Archer");
 			frame.setSize(intWidth, intHeight);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//frame.setResizable(false);
 			frame.setVisible(true);
 	     
 			
@@ -117,13 +119,11 @@ public class ControlPanel extends JFrame
         						 JOptionPane.showMessageDialog(null, "Plik zapisany pomyœlnie jako " + file);
         						 try 
         						 {
-        							//file_textAirResistance = ("");
-        							//file_textRange = ("");
-        								
+       								
         							file_speedValue = labelSpeedValue.getText().trim();
         							file_angleValue = labelAngleValue.getText().trim();
         							file_mass = labelMass.getText().trim();
-        							file_textAirResistance = textAirResistance.getText().trim(); //zwraca jako string ??
+        							file_textAirResistance = textAirResistance.getText().trim(); //zwraca jako string 
         							file_textFlightTime = textFlightTime.getText().trim();
         							file_textMaxHeight = textMaxHeight.getText().trim();
         							file_textRange = textRange.getText().trim(); 
@@ -149,7 +149,7 @@ public class ControlPanel extends JFrame
         					}
 	        			}
 	        		});
-	        		itemLoad = new JMenuItem("Wczytaj dane");
+	        		itemLoad = new JMenuItem("Wczytaj dane"); 	// niestety tekst wyswietla siê tylko w jednym polu
 	        		itemLoad.addActionListener(new ActionListener() 
 	        		{
 	        			@Override
@@ -189,13 +189,15 @@ public class ControlPanel extends JFrame
 	        	menu.add(itemExit);
 	      
 	        	more = new JMenu("More");
-					itemAuthors = new JMenuItem("Twórcy"); //wyœwietlenie informacji na temat autorów programu
+					itemAuthors = new JMenuItem("Twórcy"); 	//wyœwietlenie informacji na temat autorów programu
 					itemAuthors.addActionListener(new ActionListener()
 					{
 						@Override
 						public void actionPerformed(ActionEvent arg0) 
 						{
-							JOptionPane.showMessageDialog(itemAuthors, "Program zosta³ napisany przez \n Aleksandrê Trelê oraz Bartosza Kucharskiego.");
+							JOptionPane.showMessageDialog(itemAuthors, "Program zosta³ napisany przez \n "
+																			+ "Aleksandrê Trelê oraz Bartosza Kucharskiego.");
+						
 						}	
 					});
 				more.add(itemAuthors);	//dodaje elementy do More
@@ -216,7 +218,7 @@ public class ControlPanel extends JFrame
 	 
 			frame.add(animationPanel);
 			frame.add(buttonsPanel);
-	         frame.setJMenuBar(menuBar);
+	        frame.setJMenuBar(menuBar);
 	        
 	        //STEROWANIE        
 			labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1
@@ -246,8 +248,7 @@ public class ControlPanel extends JFrame
 	    	sliderSpeedValue.setPaintLabels(true);
 	    	sliderSpeedValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
 	    	buttonsPanel.add(sliderSpeedValue);
-	    	        		     		
-	    	
+	    	        		     			    	
 	    	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
 	    	labelMass.setBounds(230, 410, 200, 50);
 	    	buttonsPanel.add(labelMass);
@@ -304,22 +305,22 @@ public class ControlPanel extends JFrame
 	    	labelFlightTime = new JLabel("Czas lotu strza³y");	        
 	    	labelFlightTime.setBounds(550, 410, 200, 50);	
 	    	buttonsPanel.add(labelFlightTime); 	        
-	    	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y (korzystamy ze wzorów ze specyfikacji)
-	    	textFlightTime.setBounds(550, 445, 150, 30);	
+	    	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y 
+	    	textFlightTime.setBounds(550, 445, 150, 30);	//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textFlightTime);
 	   
 	    	labelMaxHeight = new JLabel("Maksymalna wysokoœæ");	
 	    	labelMaxHeight.setBounds(720, 410, 200, 50);
 	    	buttonsPanel.add(labelMaxHeight); 	       
-	    	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ (korzystamy ze wzorów ze specyfikacji)
-	    	textMaxHeight.setBounds(720, 445, 150, 30);
+	    	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ 
+	    	textMaxHeight.setBounds(720, 445, 150, 30);		//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textMaxHeight);
 	    
 	 		labelRange = new JLabel("Zasiêg strza³y");
 	 		labelRange.setBounds(890, 410, 200, 50);
 	 		buttonsPanel.add(labelRange); 
-	    	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y (korzystamy ze wzorów ze specyfikacji)
-	    	textRange.setBounds(890, 445, 150, 30);
+	    	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y 
+	    	textRange.setBounds(890, 445, 150, 30);		//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textRange);
 	    	      
 	    	buttonStart = new JButton("Start");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
@@ -327,9 +328,9 @@ public class ControlPanel extends JFrame
 			buttonStart.addActionListener(new ActionListener() 
 			{
 				@Override
-				public void actionPerformed(ActionEvent e) //Math.sin(Math.toRadians(cos)) - wzor zeby z tego co mamy zrobic to co chcemy xd
+				public void actionPerformed(ActionEvent e) 
 				{					
-					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory //toRadians daje jako stopnie
+					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory /
 					textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
 					        			       				        				
 					maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / (2 * g);
@@ -338,8 +339,7 @@ public class ControlPanel extends JFrame
 					range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
 					textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
 					
-					pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();			
-				
+					pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();							
 				}
 			});
 			buttonsPanel.add(buttonStart); 
@@ -356,7 +356,7 @@ public class ControlPanel extends JFrame
 			});
 			buttonsPanel.add(buttonStop); 
 			
-			buttonRestart = new JButton("Reset");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê
+			buttonRestart = new JButton("Reset");  //przycisk wyzerowania wszystkich komponentów oraz resetuj¹cy po³o¿enie strza³y
 	    	buttonRestart.setBounds(1060, 520, 115, 40);		
 			buttonRestart.addActionListener(new ActionListener() 
 			{

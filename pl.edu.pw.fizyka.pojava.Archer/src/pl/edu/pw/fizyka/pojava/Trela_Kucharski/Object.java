@@ -34,7 +34,7 @@ public class Object extends GlobalPosition
 		x += Vx * dt;		
 
 	//WLAŒCIWY WZÓR NA RZUT UKOŒNY, JEDNAK¯Ê NIE DZIA£A POPRAWNIE
-		/*
+/*
 		x =  (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
 				(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
 	
@@ -44,7 +44,7 @@ public class Object extends GlobalPosition
 					controlPanel.mass)))- 9.81f / (controlPanel.resistance/controlPanel.mass));	
 	
 		t+=dt;
-		 */	
+*/	
 		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
