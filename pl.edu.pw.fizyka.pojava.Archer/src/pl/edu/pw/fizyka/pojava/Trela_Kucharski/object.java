@@ -13,8 +13,8 @@ public class object extends GlobalPosition
 
 	private String plyerimage = "/images/Arrow.png";
 	
-	double velX; //wartosic ktre beda ze sliderow
-	double velY;
+	double Vx; //wartosic ktre beda ze sliderow
+	double Vy;
 	
 	
 	
@@ -27,7 +27,8 @@ public class object extends GlobalPosition
 	public void move() //tu konrtolujemy jego ruch?
 	{
 		//x+= controlPanel.speedValue / controlPanel.mass; //predkosc ruchy: x+=2
-		x+=controlPanel.mass;
+		x+=Vx;
+		y+=Vy;
 	
 		
 		//KOLIZJE ZE SCIANA
@@ -49,31 +50,12 @@ public class object extends GlobalPosition
 		}
 	}
 	
-	public void keyPressed(KeyEvent e) //odpowiada za kierunek ruchu zasady ruchu
-	{
-		int key = e.getKeyCode();
-		
-		if(key== KeyEvent.VK_RIGHT)			//tu uzycie wzoru na parobole zeby uzykac x i y
-		{
-			velX = 5;
-		}
-		else if(key == KeyEvent.VK_LEFT)
-		{
-			velX = -5;
-		}
-		else if(key == KeyEvent.VK_UP)
-		{
-			velY = -5;
-		}
-		else if(key == KeyEvent.VK_DOWN)
-		{
-			velY = 5;
-		}
-	}
 
 	public void reset()
 	{
-		object Arrow =new object(25,360);
+		x = 25;
+		y = 360;
+		
 	}
 	
 	

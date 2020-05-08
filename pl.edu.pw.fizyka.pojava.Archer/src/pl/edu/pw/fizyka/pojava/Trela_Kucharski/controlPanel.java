@@ -328,7 +328,7 @@ public class controlPanel extends JFrame
 					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory //toRadians daje jako stopnie
 					textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
 					        			       				        				
-					maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / 2 * g;
+					maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / (2 * g);
 					textMaxHeight.setText(String.valueOf(String.format("%.02f", maxheight) + " [m]")); 
 					        			
 					range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
@@ -359,8 +359,8 @@ public class controlPanel extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-			//	animationPanel.arrow.reset(25,360, vX(speedValue, angleValue),vY(speedValue, angleValue));			
-				//	animationPanel.arrow.reset(25,360);
+				animationPanel.arrow.reset();			
+				
 				}
 			});
 			buttonsPanel.add(buttonRestart); 	       	      	   
@@ -380,10 +380,19 @@ public class controlPanel extends JFrame
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
 		
 		
-
+			animationPanel.arrow.Vx = Vx(speedValue, angleValue);
+			animationPanel.arrow.Vy = Vy(speedValue, angleValue);
 		}	
 	}
-
+public double Vy(int alfa, int v)
+{
+	return -(v*(Math.sin(Math.toRadians(alfa)))); //zwraca sin
+}
+	
+	public double Vx( int v, int alfa)
+{
+	return(v*(Math.cos(Math.toRadians(alfa)))); //od teraz 
+}
 
 
 	
