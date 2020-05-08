@@ -9,7 +9,6 @@ public class main
 	{
 		
 		controlPanel frame = new controlPanel(); 
-		
 	}
 
 }
