@@ -23,13 +23,13 @@ public class animationPanel extends JPanel implements ActionListener
 		
 	public static Timer gamelooptimer;
 	
-	object arrow =new object(25,360); //po³o¿enie pocz¹tkowe obiektu
+	object arrow =new object(10,360); //po³o¿enie pocz¹tkowe obiektu
 
 
 	public animationPanel()
 	{
 		
-		gamelooptimer = new Timer(200, this); //ze co sto milisknd sie powatarza		
+		gamelooptimer = new Timer(10, this); //ze co sto milisknd sie powatarza		
 		//gamelooptimer.start();
 		
 	}

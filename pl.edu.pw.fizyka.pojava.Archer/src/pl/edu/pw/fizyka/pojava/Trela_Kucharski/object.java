@@ -2,7 +2,7 @@ package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
+
 
 import javax.swing.ImageIcon;
 
@@ -16,7 +16,9 @@ public class object extends GlobalPosition
 	double Vx; //wartosic które s¹ ze sliderow
 	double Vy;	//  odpowiadaja za ruch
 	
+	double dt = 0.1; //krok ca³kowania
 	
+	float t;
 	
 	public object(int x, int y)
 	{
@@ -26,10 +28,23 @@ public class object extends GlobalPosition
 	
 	public void move() //tu konrtolujemy jego ruch?
 	{
-		//x+= controlPanel.speedValue / controlPanel.mass; //predkosc ruchy: x+=2
-		x+=Vx;	//tu kierunek w prawo
-		y+=Vy; //tu kierunek w gore
+			 
+	Vy += 9.81f*dt;
+	y += Vy * dt;
+	x += Vx * dt;		
+
+	//WLAŒCIWY WZÓR NA RZUT UKOŒNY, JEDNAK¯Ê NIE DZIA£A POPRAWNIE
+/*
+	x =  (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
+			(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
 	
+	y =  (int) (Vy / (controlPanel.resistance/controlPanel.mass) + 
+			9.81f / (controlPanel.resistance/controlPanel.mass) * 
+			((1 - Math.pow(2.72f, (-controlPanel.resistance * t) / 
+					controlPanel.mass)))- 9.81f / (controlPanel.resistance/controlPanel.mass));	
+	
+	t+=dt;
+*/	
 		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
@@ -47,6 +62,11 @@ public class object extends GlobalPosition
 		if (y > 380)
 		{
 			y = 380;
+		}
+		if (y == 380)
+		{
+			pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop(); //zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹	
+			
 		}
 	}
 	

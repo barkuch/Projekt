@@ -30,7 +30,8 @@ public class controlPanel extends JFrame
 	  //  private static final int radius = 100;
 	   
 	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
-	  	    
+	   
+	    
 	    //variable values
 	    static double resistance;	 
 	    int mass1 = 7; 
@@ -362,6 +363,7 @@ public class controlPanel extends JFrame
 				animationPanel.arrow.reset(25,360, Vx(speedValue, angleValue),Vy(speedValue, angleValue));					
 				animationPanel.repaint();
 				pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop();
+				
 				textAirResistance.setText(""); 
 			    textFlightTime.setText("");
 			    textMaxHeight.setText("");
@@ -369,6 +371,9 @@ public class controlPanel extends JFrame
 			    labelSpeedValue.setText("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s");
 			    labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 0 °");
 			    labelMass.setText("Masa wybranej strza³y: ");  
+				sliderAngleValue.setValue(0);
+				sliderSpeedValue.setValue(0);
+				
 				}
 			});
 			buttonsPanel.add(buttonRestart); 	       	      	   
@@ -400,7 +405,8 @@ public class controlPanel extends JFrame
 	
 	public double Vx( int v, int alfa)
 	{
-		return(v*(Math.cos(Math.toRadians(alfa)))); //od teraz 
+		return (v*(Math.cos(Math.toRadians(alfa)))*8); //mno¿enie przez 8 u¿yte w celu uzyskania 
+														//wiarygodniejszej jakosci animacji
 	}
 
 
