@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-
+	
+	//ALEKSANDRA TRELA, BARTOSZ KUCHARSKI
 public class AnimationPanel extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -29,9 +30,8 @@ public class AnimationPanel extends JPanel implements ActionListener
 	public AnimationPanel()
 	{
 		
-		gamelooptimer = new Timer(10, this); //ze co sto milisknd sie powatarza		
-		//gamelooptimer.start();
-		
+		gamelooptimer = new Timer(15, this); //ze co sto milisknd sie powatarza		
+				
 	}
 
 	public void paint(Graphics g)

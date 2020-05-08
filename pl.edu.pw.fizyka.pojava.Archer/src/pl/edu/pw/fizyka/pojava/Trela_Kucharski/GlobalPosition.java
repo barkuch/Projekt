@@ -1,5 +1,6 @@
 package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
+	//BARTOSZ KUCHARSKI
 public class GlobalPosition 
 {
 	public int x, y;

@@ -17,8 +17,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
-public class controlPanel extends JFrame 
+	//ALEKSANDRA TRELA, BARTOSZ KUCHARSKI
+public class ControlPanel extends JFrame 
 {
 	 
 		private static final long serialVersionUID = 1L;
@@ -90,7 +90,7 @@ public class controlPanel extends JFrame
 	    private String file_speedValue, file_angleValue, file_mass, file_textAirResistance, file_textFlightTime, file_textMaxHeight, file_textRange;
 		private static String inFile;
 	    
-	    public controlPanel() 
+	    public ControlPanel() 
 	    {
 	    	frame = new JFrame("Archer");
 			frame.setSize(intWidth, intHeight);
@@ -403,12 +403,12 @@ public class controlPanel extends JFrame
 	
 	public double Vy(int alfa, int v)
 	{
-		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako speedValue * sin(angleValue)"
-	}
-	
+		return -(v*(Math.sin(Math.toRadians(alfa+12)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
+	}															//dodanie 12 u¿yte w celu uzyskania 
+																//wiarygodniejszej jakosci animacji
 	public double Vx( int v, int alfa)
 	{
-		return (v*(Math.cos(Math.toRadians(alfa)))*8); //mno¿enie przez 8 u¿yte w celu uzyskania 
+		return (v*(Math.cos(Math.toRadians(alfa)))*7); //mno¿enie przez 8 u¿yte w celu uzyskania 
 														//wiarygodniejszej jakosci animacji
 	}
 

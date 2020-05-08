@@ -8,69 +8,58 @@ import javax.swing.ImageIcon;
 
 import pl.edu.pw.fizyka.pojava.Trela_Kucharski.GlobalPosition;
 
+	//BARTOSZ KUCHARSKI
 public class Object extends GlobalPosition
 {
 
-	private String plyerimage = "/images/Arrow.png";
+	private String plyerimage = "/images/arrow.png";
 	
 	double Vx; //wartosic które s¹ ze sliderow
 	double Vy;	//  odpowiadaja za ruch
 	
 	double dt = 0.1; //krok ca³kowania
 	
-	float t;
+	float t; //zmienna u¿ywana we w³aœciwym wzorze
 	
 	public Object(int x, int y)
 	{
-		super(x, y);
-		
+		super(x, y);		
 	}
 	
-	public void move() //tu konrtolujemy jego ruch?
+	public void move() //tu konrtolujemy jego ruch
 	{
 			 
-	Vy += 9.81f*dt;
-	y += Vy * dt;
-	x += Vx * dt;		
+		Vy += 9.81f*dt;
+		y += Vy * dt;
+		x += Vx * dt;		
 
 	//WLAŒCIWY WZÓR NA RZUT UKOŒNY, JEDNAK¯Ê NIE DZIA£A POPRAWNIE
-/*
-	x =  (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
-			(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
+		/*
+		x =  (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
+				(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
 	
-	y =  (int) (Vy / (controlPanel.resistance/controlPanel.mass) + 
-			9.81f / (controlPanel.resistance/controlPanel.mass) * 
-			((1 - Math.pow(2.72f, (-controlPanel.resistance * t) / 
+		y =  (int) (Vy / (controlPanel.resistance/controlPanel.mass) + 
+				9.81f / (controlPanel.resistance/controlPanel.mass) * 
+				((1 - Math.pow(2.72f, (-controlPanel.resistance * t) / 
 					controlPanel.mass)))- 9.81f / (controlPanel.resistance/controlPanel.mass));	
 	
-	t+=dt;
-*/	
+		t+=dt;
+		 */	
 		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
-		{
-			x = 0;
-		}
+				x = 0;		
 		if (y < 0)
-		{
-			y = 0;
-		}
-		if (x > 1140)
-		{
-			x = 1140;
-		}
-		if (y > 380)
-		{
-			y = 380;
-		}
-		if (y == 380)
-		{
-			pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); //zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹	
-			
-		}
+				y = 0;		
+		if (x > 1140)		
+				x = 1140;		
+		if (y > 380)		
+				y = 380;		
+		if (y == 380)	//zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹			
+				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); 
+					
 	}
 	
-
 	public void reset(int xx, int yy, double vX, double vY)
 	{		
 		x = xx;
@@ -78,12 +67,12 @@ public class Object extends GlobalPosition
 		Vx = 0;
 		Vy = 0;		
 	}
-	
-	
+		
 	public void draw(Graphics2D g2d)
 	{
 		g2d.drawImage(getPlayerImage(), x, y, null);
 	}
+	
 	public Image getPlayerImage()
 	{
 		ImageIcon i = new ImageIcon(getClass().getResource(plyerimage));
