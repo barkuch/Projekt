@@ -27,8 +27,8 @@ public class object extends GlobalPosition
 	public void move() //tu konrtolujemy jego ruch?
 	{
 		//x+= controlPanel.speedValue / controlPanel.mass; //predkosc ruchy: x+=2
-		x+=Vx;
-		y+=Math.pow(Vy,2);
+		x+=Vx;	//tu kierunek w prawo
+		y+=Vy; //tu kierunek w gore
 	
 		
 		//KOLIZJE ZE SCIANA
