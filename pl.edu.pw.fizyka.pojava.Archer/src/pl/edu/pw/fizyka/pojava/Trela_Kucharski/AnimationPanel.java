@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 
 
-public class animationPanel extends JPanel implements ActionListener
+public class AnimationPanel extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 
@@ -23,10 +23,10 @@ public class animationPanel extends JPanel implements ActionListener
 		
 	public static Timer gamelooptimer;
 	
-	object arrow =new object(10,360); //po³o¿enie pocz¹tkowe obiektu
+	Object arrow =new Object(10,360); //po³o¿enie pocz¹tkowe obiektu
 
 
-	public animationPanel()
+	public AnimationPanel()
 	{
 		
 		gamelooptimer = new Timer(10, this); //ze co sto milisknd sie powatarza		

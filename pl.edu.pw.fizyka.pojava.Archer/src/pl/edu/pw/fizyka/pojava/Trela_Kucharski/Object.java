@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 import pl.edu.pw.fizyka.pojava.Trela_Kucharski.GlobalPosition;
 
-public class object extends GlobalPosition
+public class Object extends GlobalPosition
 {
 
 	private String plyerimage = "/images/Arrow.png";
@@ -20,7 +20,7 @@ public class object extends GlobalPosition
 	
 	float t;
 	
-	public object(int x, int y)
+	public Object(int x, int y)
 	{
 		super(x, y);
 		
@@ -65,7 +65,7 @@ public class object extends GlobalPosition
 		}
 		if (y == 380)
 		{
-			pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop(); //zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹	
+			pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); //zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹	
 			
 		}
 	}

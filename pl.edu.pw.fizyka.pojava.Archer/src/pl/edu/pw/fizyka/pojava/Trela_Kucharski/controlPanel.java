@@ -20,7 +20,10 @@ import javax.swing.event.ChangeListener;
 
 public class controlPanel extends JFrame 
 {
-	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
+	 
+		private static final long serialVersionUID = 1L;
+	
+		private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
 	    private static final int SLIDER_INIT1 = 0;  //ustawiam wartoœæ pocz¹tkow¹ suwaka 1 i 2
 	    private static final int SLIDER_MIN2 = 0;  
@@ -56,7 +59,7 @@ public class controlPanel extends JFrame
 
 	    //panels
 	    JFrame frame;			//Tworzê 2 panele
-		animationPanel animationPanel;
+		AnimationPanel animationPanel;
 		JPanel buttonsPanel;
 	    
 		public int intWidth = 1195; 
@@ -202,7 +205,7 @@ public class controlPanel extends JFrame
 	        
 	        
 			//PANEL ANIMACJI
-			animationPanel = new animationPanel();
+			animationPanel = new AnimationPanel();
 			animationPanel.setLayout(null);
 			animationPanel.setBounds(0, 0, intWidth, intHeight-215);
 			
@@ -335,7 +338,7 @@ public class controlPanel extends JFrame
 					range = ( Math.pow(speedValue, 2) * Math.sin( 2* Math.toRadians(angleValue)) ) / g;
 					textRange.setText(String.valueOf(String.format("%.02f", range) + " [m]")); 			
 					
-					pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.start();			
+					pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();			
 				
 				}
 			});
@@ -348,7 +351,7 @@ public class controlPanel extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-					pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop();			
+					pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();			
 				}
 			});
 			buttonsPanel.add(buttonStop); 
@@ -362,7 +365,7 @@ public class controlPanel extends JFrame
 				{					
 				animationPanel.arrow.reset(25,360, Vx(speedValue, angleValue),Vy(speedValue, angleValue));					
 				animationPanel.repaint();
-				pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop();
+				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
 				textAirResistance.setText(""); 
 			    textFlightTime.setText("");
