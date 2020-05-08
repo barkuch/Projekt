@@ -359,8 +359,16 @@ public class controlPanel extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-				animationPanel.arrow.reset();			
-				
+				animationPanel.arrow.reset(25,360, Vx(speedValue, angleValue),Vy(speedValue, angleValue));					
+				animationPanel.repaint();
+				pl.edu.pw.fizyka.pojava.Trela_Kucharski.animationPanel.gamelooptimer.stop();
+				textAirResistance.setText(""); 
+			    textFlightTime.setText("");
+			    textMaxHeight.setText("");
+			    textRange.setText("");
+			    labelSpeedValue.setText("Prêdkoœæ pocz¹tkowa strza³y: 0 m/s");
+			    labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 0 °");
+			    labelMass.setText("Masa wybranej strza³y: ");  
 				}
 			});
 			buttonsPanel.add(buttonRestart); 	       	      	   
@@ -383,15 +391,17 @@ public class controlPanel extends JFrame
 			animationPanel.arrow.Vy = Vy(speedValue, angleValue);
 		}	
 	}
-public double Vy(int alfa, int v)
-{
-	return -(v*(Math.sin(Math.toRadians(alfa)))); //zwraca sin
-}
+
+	
+	public double Vy(int alfa, int v)
+	{
+		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako speedValue * sin(angleValue)"
+	}
 	
 	public double Vx( int v, int alfa)
-{
-	return(v*(Math.cos(Math.toRadians(alfa)))); //od teraz 
-}
+	{
+		return(v*(Math.cos(Math.toRadians(alfa)))); //od teraz 
+	}
 
 
 	

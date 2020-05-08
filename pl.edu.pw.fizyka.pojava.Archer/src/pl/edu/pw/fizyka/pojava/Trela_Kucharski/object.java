@@ -13,8 +13,8 @@ public class object extends GlobalPosition
 
 	private String plyerimage = "/images/Arrow.png";
 	
-	double Vx; //wartosic ktre beda ze sliderow
-	double Vy;
+	double Vx; //wartosic które s¹ ze sliderow
+	double Vy;	//  odpowiadaja za ruch
 	
 	
 	
@@ -28,7 +28,7 @@ public class object extends GlobalPosition
 	{
 		//x+= controlPanel.speedValue / controlPanel.mass; //predkosc ruchy: x+=2
 		x+=Vx;
-		y+=Vy;
+		y+=Math.pow(Vy,2);
 	
 		
 		//KOLIZJE ZE SCIANA
@@ -51,11 +51,12 @@ public class object extends GlobalPosition
 	}
 	
 
-	public void reset()
-	{
-		x = 25;
-		y = 360;
-		
+	public void reset(int xx, int yy, double vX, double vY)
+	{		
+		x = xx;
+		y = yy;
+		Vx = 0;
+		Vy = 0;		
 	}
 	
 	

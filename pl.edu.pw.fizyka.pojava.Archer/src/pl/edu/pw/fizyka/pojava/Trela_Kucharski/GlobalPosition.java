@@ -6,7 +6,7 @@ public class GlobalPosition
 	
 	public GlobalPosition(int x, int y) //konstruktor?
 	{
-		this.x = x;
+		this.x = x; //po³o¿enie
 		this.y = y;
 	}
 }
