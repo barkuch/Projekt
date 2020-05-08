@@ -18,7 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 
-public class controlPanel extends JFrame implements Runnable
+public class controlPanel extends JFrame 
 {
 	    private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
@@ -32,26 +32,26 @@ public class controlPanel extends JFrame implements Runnable
 	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
 	  	    
 	    //variable values
-	    private double resistance;	 
-	    private int mass1 = 7; 
-	    private double mass2 = 2.4;
-	    private int mass3 = 13;
-	    private int speedValue; 	//zmienne niezbêdne do ChangeListenera
-	    private int angleValue;
-	    private double mass;
+	    static double resistance;	 
+	    int mass1 = 7; 
+	    double mass2 = 2.4;
+	    int mass3 = 13;
+	    static int speedValue; 	//zmienne niezbêdne do ChangeListenera
+	    static int angleValue;
+	    static double mass;
 	   
-	    private double range;
-	    private double maxheight;
-	    private double flighttime;	   	 
+	    double range;
+	    double maxheight;
+	    double flighttime;	   	 
 	    	   
 	    //menu
-	    private JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
-	    private JMenu menu;
-	    private JMenu more;
-	    private JMenuItem itemExit; //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
-	    private JMenuItem itemSave;	   
-	    private JMenuItem itemLoad;
-	    private JMenuItem itemAuthors;
+	    JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
+	    JMenu menu;
+	    JMenu more;
+	    JMenuItem itemExit; //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
+	    JMenuItem itemSave;	   
+	    JMenuItem itemLoad;
+	    JMenuItem itemAuthors;
 
 	    //panels
 	    JFrame frame;			//Tworzê 2 panele
@@ -325,7 +325,7 @@ public class controlPanel extends JFrame implements Runnable
 				@Override
 				public void actionPerformed(ActionEvent e) //Math.sin(Math.toRadians(cos)) - wzor zeby z tego co mamy zrobic to co chcemy xd
 				{					
-					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory
+					flighttime = (2 *  speedValue * Math.sin(Math.toRadians(angleValue)) ) / g; //wzory //toRadians daje jako stopnie
 					textFlightTime.setText(String.valueOf(String.format("%.02f", flighttime) + " [s]")); //wyswietli  wartoœæ oporu
 					        			       				        				
 					maxheight = Math.pow(speedValue * Math.sin(Math.toRadians(angleValue)), 2) / 2 * g;
@@ -359,8 +359,8 @@ public class controlPanel extends JFrame implements Runnable
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{					
-				//animationPanel.object.reset(25,360);			
-
+			//	animationPanel.arrow.reset(25,360, vX(speedValue, angleValue),vY(speedValue, angleValue));			
+				//	animationPanel.arrow.reset(25,360);
 				}
 			});
 			buttonsPanel.add(buttonRestart); 	       	      	   
@@ -368,7 +368,7 @@ public class controlPanel extends JFrame implements Runnable
 	    
 	    
 	    
-	private class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
+	public class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
     {
 		@Override
 		public void stateChanged(ChangeEvent e) 
@@ -378,16 +378,15 @@ public class controlPanel extends JFrame implements Runnable
 							
 			angleValue = sliderAngleValue.getValue();//?
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
+		
+		
+
 		}	
 	}
 
 
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	} 
+	
 	
 		
 	

@@ -13,8 +13,8 @@ public class object extends GlobalPosition
 
 	private String plyerimage = "/images/Arrow.png";
 	
-	int velX = 5; //wartosic ktre beda ze sliderow
-	int velY = 0;
+	double velX; //wartosic ktre beda ze sliderow
+	double velY;
 	
 	
 	
@@ -26,14 +26,9 @@ public class object extends GlobalPosition
 	
 	public void move() //tu konrtolujemy jego ruch?
 	{
-		x+=velX; //predkosc ruchy: x+=2
-		y+=velY;
-		//x+=velX^3+velX;
-		//y+=velY^44+velY;
-		//x+=x+velX*velX+velY;          //lub tu uzycie wzoru?
-		//y+=velX*velX+velY;
-		//if(y <= 0 || y>= 380) velY *= -1;
-		//if(x <= 0 || x>= 1128) velX *= 1;
+		//x+= controlPanel.speedValue / controlPanel.mass; //predkosc ruchy: x+=2
+		x+=controlPanel.mass;
+	
 		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
@@ -78,7 +73,7 @@ public class object extends GlobalPosition
 
 	public void reset()
 	{
-		
+		object Arrow =new object(25,360);
 	}
 	
 	
