@@ -28,23 +28,23 @@ public class Object extends GlobalPosition
 	
 	public void move() //tu konrtolujemy jego ruch
 	{
-			 
+	//		 
 		Vy += 9.81f*dt;
 		y += Vy * dt;
 		x += Vx * dt;		
 
 	//WLAŒCIWY WZÓR NA RZUT UKOŒNY, JEDNAK¯Ê NIE DZIA£A POPRAWNIE
 /*
-		x =  (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
-				(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
+		x =  (int) (Vx / (ControlPanel.resistance/ControlPanel.mass) * 
+				(1 - Math.pow(2.72f, (-ControlPanel.resistance * t) / ControlPanel.mass)));
 	
-		y =  (int) (Vy / (controlPanel.resistance/controlPanel.mass) + 
-				9.81f / (controlPanel.resistance/controlPanel.mass) * 
-				((1 - Math.pow(2.72f, (-controlPanel.resistance * t) / 
-					controlPanel.mass)))- 9.81f / (controlPanel.resistance/controlPanel.mass));	
+		y =  (int) (Vy / (ControlPanel.resistance/ControlPanel.mass) + 
+				9.81f / (ControlPanel.resistance/ControlPanel.mass) * 
+				((1 - Math.pow(2.72f, (-ControlPanel.resistance * t) / 
+					ControlPanel.mass)))- 9.81f / (ControlPanel.resistance/ControlPanel.mass));	
 	
 		t+=dt;
-*/	
+	*/
 		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
