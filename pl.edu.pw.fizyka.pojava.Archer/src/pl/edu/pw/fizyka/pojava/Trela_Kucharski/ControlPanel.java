@@ -286,6 +286,7 @@ public class ControlPanel extends JFrame
 	    	labelAirResistance.setBounds(420, 410, 100, 50);	
 	    	buttonsPanel.add(labelAirResistance); 	 
 	    	textAirResistance = new JTextField("");  //pole tekstowe, w którym wyœwietlaæ siê bêdzie opór powietrza
+	    	textAirResistance.setEditable(false);
 	    	textAirResistance.setBounds(420, 445, 100, 30);
 	    	buttonsPanel.add(textAirResistance);
 	   		buttonRandom = new JButton("Losuj");  //przycisk Losuj, który generuje liczbê z zakresu 1-100
@@ -306,6 +307,7 @@ public class ControlPanel extends JFrame
 	    	labelFlightTime.setBounds(550, 410, 200, 50);	
 	    	buttonsPanel.add(labelFlightTime); 	        
 	    	textFlightTime = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Czas lotu strza³y 
+	    	textFlightTime.setEditable(false);
 	    	textFlightTime.setBounds(550, 445, 150, 30);	//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textFlightTime);
 	   
@@ -313,6 +315,7 @@ public class ControlPanel extends JFrame
 	    	labelMaxHeight.setBounds(720, 410, 200, 50);
 	    	buttonsPanel.add(labelMaxHeight); 	       
 	    	textMaxHeight = new JTextField(); //pole tekstowe, w którym wyœwietlaæ siê bêdzie Maksymalna wysokoœæ 
+	    	textMaxHeight.setEditable(false);
 	    	textMaxHeight.setBounds(720, 445, 150, 30);		//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textMaxHeight);
 	    
@@ -320,6 +323,7 @@ public class ControlPanel extends JFrame
 	 		labelRange.setBounds(890, 410, 200, 50);
 	 		buttonsPanel.add(labelRange); 
 	    	textRange = new JTextField();  //pole tekstowe, w którym wyœwietlaæ siê bêdzie Zasiêg strza³y 
+	    	textRange.setEditable(false);
 	    	textRange.setBounds(890, 445, 150, 30);		//(korzystamy ze wzorów ze specyfikacji)
 	    	buttonsPanel.add(textRange);
 	    	      
