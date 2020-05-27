@@ -30,7 +30,7 @@ public class ControlPanel extends JFrame
 	    private static final int SLIDER_MAX2 = 30;  
 	    private static final int SLIDER_INIT2 = 0;  
 
-	  //  private static final int radius = 100;
+	  // private static final int radius = 100;
 	   
 	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
 	   
