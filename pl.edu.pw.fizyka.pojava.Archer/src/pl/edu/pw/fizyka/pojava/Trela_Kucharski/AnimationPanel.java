@@ -1,5 +1,8 @@
 package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
+
+
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -24,7 +27,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 		
 	public static Timer gamelooptimer;
 	
-	Object arrow =new Object(10,360); //po³o¿enie pocz¹tkowe obiektu
+	Object Arrow =new Object(25,357); //po³o¿enie pocz¹tkowe obiektu
 
 
 	public AnimationPanel()
@@ -40,7 +43,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(getBackgroundImage(), 0, 0, null);
-		arrow.draw(g2d);		
+		Arrow.draw(g2d);		
 	}
 
 	public Image getBackgroundImage()
@@ -52,7 +55,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		arrow.move();		
+		Arrow.move();		
 		repaint();
 	}
 	public void setSize( int intH, int intW) 
