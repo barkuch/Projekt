@@ -58,10 +58,11 @@ public class GlobalPosition
 		Vy = 0;		
 	}
 		
-	public void load(int xxx, int yyy)
+	public void load(int xxx, int yyy) //stworzony na potrzeby ustaiwenia strza³y w pierwotnej pozycji
 	{		
 		x = xxx;
 		y = yyy;
 	
 	}
+	
 }

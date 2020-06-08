@@ -68,18 +68,33 @@ public class Actions implements ActionListener
         			while ((line = reader.readLine()) != null) 
         			{
         				buffer.append(line);
+        				System.out.println(line);
+        				
+        				
         			}
         			reader.close();
-       				ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue);        					
+       			//	ControlPanel.sliderSpeedValue.setValue(Integer.parseInt(ControlPanel.file_speedValue));
+        		//	ControlPanel.sliderAngleValue.setValue(Integer.parseInt(ControlPanel.file_angleValue));
+       			
+        			ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue); 
        				ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
-      				ControlPanel.labelMass.setText(ControlPanel.file_mass);
-   					ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
-  					ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
+        			ControlPanel.labelMass.setText(ControlPanel.file_mass);
+       				ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
+       				ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
         			ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
         			ControlPanel.textRange.setText(ControlPanel.file_textRange);
-        								
-        			ControlPanel.AnimationPanel.Arrow.load(25,357);					
+        			        			
+        	//		ControlPanel.speedValue = Integer.parseInt(ControlPanel.file_speedValue);
 
+       		//		ControlPanel.angleValue = Integer.parseInt(ControlPanel.file_angleValue);
+     				
+       		//		ControlPanel.mass = Integer.parseInt(ControlPanel.file_mass);
+					
+   			//		ControlPanel.resistance = Integer.parseInt(ControlPanel.file_textAirResistance);
+       								
+        			ControlPanel.AnimationPanel.Arrow.load(25,357);					
+        			ControlPanel.AnimationPanel.repaint();
+    			
         			} 
         			catch (Exception e1) 
         			{
@@ -141,7 +156,7 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Reset")
 			{
-					ControlPanel.AnimationPanel.Arrow.reset(25,357, ControlPanel.Vx(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance),ControlPanel.Vy(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance));					
+					ControlPanel.AnimationPanel.Arrow.reset(25,357, Vx(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance),Vy(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance));					
 	        		ControlPanel.AnimationPanel.repaint();
 	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
@@ -158,5 +173,15 @@ public class Actions implements ActionListener
 			
 		
 		}
+	}
+	public static double Vy(int alfa, int v, int mas, int res)
+	{
+		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
+	}															//dodanie 12 u¿yte w celu uzyskania 
+																//wiarygodniejszej jakosci animacji
+	public static double Vx( int v, int alfa, int mas, int res)
+	{
+		return (v*(Math.cos(Math.toRadians(alfa)))); //mno¿enie przez 8 u¿yte w celu uzyskania 
+														//wiarygodniejszej jakosci animacji
 	}
 }

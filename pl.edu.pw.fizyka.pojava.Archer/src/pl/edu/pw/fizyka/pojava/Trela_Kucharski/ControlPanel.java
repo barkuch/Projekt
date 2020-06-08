@@ -2,22 +2,8 @@ package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-
-import java.io.File;
-import java.io.FileInputStream;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import java.util.Random;
 import java.util.Scanner;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -207,7 +193,7 @@ public class ControlPanel extends JFrame
 	    	    		       	      	   
 	    }
 	    	 
-	     Actions aL = new Actions();
+	Actions aL = new Actions();
 	     
 	     
 	public class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
@@ -221,22 +207,13 @@ public class ControlPanel extends JFrame
 			angleValue = sliderAngleValue.getValue();
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
 				
-			AnimationPanel.Arrow.Vx = Vx(speedValue, angleValue, mass, resistance);
-			AnimationPanel.Arrow.Vy = Vy(speedValue, angleValue, mass, resistance);
+			AnimationPanel.Arrow.Vx = Actions.Vx(speedValue, angleValue, mass, resistance);
+			AnimationPanel.Arrow.Vy = Actions.Vy(speedValue, angleValue, mass, resistance);
 		}	
 	}	 
 	 
 	
-	public static double Vy(int alfa, int v, int mas, int res)
-	{
-		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
-	}															//dodanie 12 u¿yte w celu uzyskania 
-																//wiarygodniejszej jakosci animacji
-	public static double Vx( int v, int alfa, int mas, int res)
-	{
-		return (v*(Math.cos(Math.toRadians(alfa)))); //mno¿enie przez 8 u¿yte w celu uzyskania 
-														//wiarygodniejszej jakosci animacji
-	}
+	
 
 	
 }
