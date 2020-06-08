@@ -40,7 +40,7 @@ public class Actions implements ActionListener
 					String Data = ControlPanel.inFile;
 					try 
 					{
-						BufferedWriter reader = new BufferedWriter(new FileWriter(new File("C:\\Users\\barti\\Desktop/dane1.txt"), true));
+						BufferedWriter reader = new BufferedWriter(new FileWriter(new File("C:\\Users\\barti\\git\\Arher\\pl.edu.pw.fizyka.pojava.Archer\\src\\dane\\dane2.txt"), true));
 						reader.write(Data);
 						reader.newLine();
 						reader.close();
@@ -55,41 +55,37 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Wczytaj dane")
 			{
-				JFileChooser chooser = new JFileChooser(); 
-        					chooser.setDialogTitle("Wybierz plik");  				
-        					int returnVal = chooser.showSaveDialog(null);
-        					if(returnVal == JFileChooser.APPROVE_OPTION)
-        					{
-        						 File file = chooser.getSelectedFile();
-        						 try 
-        						 {
-        							 FileInputStream fr = new FileInputStream(file);
-        								InputStreamReader isr = new InputStreamReader(fr, "UTF-8");
-        								BufferedReader reader = new BufferedReader(isr);
-        								StringBuffer buffer = new StringBuffer();
+				
+				File file = new File("C:\\Users\\barti\\git\\Arher\\pl.edu.pw.fizyka.pojava.Archer\\src\\dane\\dane2.txt");
+        		try 
+        		{  							
+        			FileInputStream fr = new FileInputStream(file);
+        			InputStreamReader isr = new InputStreamReader(fr);
+        			BufferedReader reader = new BufferedReader(isr);
+        			StringBuffer buffer = new StringBuffer();
 
-        								String line = null;
-        								while ((line = reader.readLine()) != null) 
-        								{
-        									buffer.append(line);
-        								}
-        								reader.close();
-        								ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue);        					
-        								ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
-        								ControlPanel.labelMass.setText(ControlPanel.file_mass);
-        								ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
-        								ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
-        								ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
-        								ControlPanel.textRange.setText(ControlPanel.file_textRange);
-        									
-        				        //		AnimationPanel.Arrow.Vx = Vx(speedValue, angleValue, mass, resistance);
-        				    		//	AnimationPanel.Arrow.Vy = Vy(speedValue, angleValue, mass, resistance);
-        						 } 
-        						 catch (Exception e1) 
-        						 {
-          							e1.printStackTrace();
-        						 }
-      						}
+        			String line = null;
+        			while ((line = reader.readLine()) != null) 
+        			{
+        				buffer.append(line);
+        			}
+        			reader.close();
+       				ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue);        					
+       				ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
+      				ControlPanel.labelMass.setText(ControlPanel.file_mass);
+   					ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
+  					ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
+        			ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
+        			ControlPanel.textRange.setText(ControlPanel.file_textRange);
+        								
+        			ControlPanel.AnimationPanel.Arrow.load(25,357);					
+
+        			} 
+        			catch (Exception e1) 
+        			{
+        				e1.printStackTrace();
+        			}
+      						
 			}
 			else if(s == "Wyjœcie")
 			{
@@ -121,7 +117,7 @@ public class Actions implements ActionListener
 			else if(s == "Losuj opór powietrza")
 			{
 				Random rand = new Random();
-	    		ControlPanel.resistance = rand.nextInt((99-1)+1)+1;	       //losuje od 1 do 99 			      			
+	    		ControlPanel.resistance = rand.nextInt(100)+1;	      		      			
 	    		ControlPanel.textAirResistance.setText(String.valueOf(ControlPanel.resistance));
 			}
 			else if(s == "Start")
@@ -153,11 +149,11 @@ public class Actions implements ActionListener
 	        		ControlPanel.textFlightTime.setText("Czas lotu strza³y");
 	        		ControlPanel.textMaxHeight.setText("Max. wysokoœæ");
 	        		ControlPanel.textRange.setText("Zasiêg strza³y");
-	        		ControlPanel.labelSpeedValue.setText("Prêdkoœæ strza³y: 1 m/s");
-	        		ControlPanel.labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 1 °");
+	        		ControlPanel.labelSpeedValue.setText("Prêdkoœæ strza³y: 0 m/s");
+	        		ControlPanel.labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 0 °");
 	        		ControlPanel.labelMass.setText("Masa wybranej strza³y: ");  
-	        		ControlPanel.sliderAngleValue.setValue(1);
-	        		ControlPanel.sliderSpeedValue.setValue(1);
+	        		ControlPanel.sliderAngleValue.setValue(0);
+	        		ControlPanel.sliderSpeedValue.setValue(0);
 			}
 			
 		

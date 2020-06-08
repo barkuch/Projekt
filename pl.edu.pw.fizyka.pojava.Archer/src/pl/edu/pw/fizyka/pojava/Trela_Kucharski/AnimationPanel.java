@@ -33,7 +33,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 	public AnimationPanel()
 	{
 		
-		gamelooptimer = new Timer(15, this); //ze co sto milisknd sie powatarza		
+		gamelooptimer = new Timer(16, this); //ze co sto milisknd sie powatarza		
 				
 	}
 

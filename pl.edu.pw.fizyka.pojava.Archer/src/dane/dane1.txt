@@ -1,0 +1,27 @@
+K¹t nachylenia ³uku do ziemi: 58 °
+Prêdkoœæ strza³y: 13 m/s
+Masa wybranej strza³y: 2 kg
+Opór powietrza: 85
+Czas lotu strza³y: 2,25 [s]
+Maksymalna wysokoœæ: 6,20 [m]
+Zasiêg strza³y: 15,49 [m]
+----------------------------------
+
+K¹t nachylenia ³uku do ziemi: 48 °
+Prêdkoœæ strza³y: 30 m/s
+Masa wybranej strza³y: 7 kg
+Opór powietrza: 17
+Czas lotu strza³y: 4,55 [s]
+Maksymalna wysokoœæ: 25,34 [m]
+Zasiêg strza³y: 91,27 [m]
+----------------------------------
+
+K¹t nachylenia ³uku do ziemi: 48 °
+Prêdkoœæ strza³y: 30 m/s
+Masa wybranej strza³y: 7 kg
+Opór powietrza: 17
+Czas lotu strza³y: 4,55 [s]
+Maksymalna wysokoœæ: 25,34 [m]
+Zasiêg strza³y: 91,27 [m]
+----------------------------------
+

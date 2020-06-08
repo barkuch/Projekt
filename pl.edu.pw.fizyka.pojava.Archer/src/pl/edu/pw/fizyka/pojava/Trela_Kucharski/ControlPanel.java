@@ -31,12 +31,12 @@ public class ControlPanel extends JFrame
 	
 		private static final long serialVersionUID = 1L;
 
-		private static final int SLIDER_MIN1 = 1;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
+		private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
 	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
-	    private static final int SLIDER_INIT1 = 1;  //ustawiam wartoœæ pocz¹tkow¹ suwaka 1 i 2
-	    private static final int SLIDER_MIN2 = 1;  
+	    private static final int SLIDER_INIT1 = 0;  //ustawiam wartoœæ pocz¹tkow¹ suwaka 1 i 2
+	    private static final int SLIDER_MIN2 = 0;  
 	    private static final int SLIDER_MAX2 = 30;  
-	    private static final int SLIDER_INIT2 = 1;  
+	    private static final int SLIDER_INIT2 = 0;  
 	   
 	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
 	   
@@ -137,22 +137,20 @@ public class ControlPanel extends JFrame
 			buttonsPanelLine_End = new JPanel();
 			buttonsPanelLine_End.setLayout(new GridLayout(12,1));
 	   	        
-			labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 1 °"); //Dodaje etykietê nad suwakiem 1	   
+			labelAngleValue = new JLabel("K¹t nachylenia ³uku do ziemi: 0 °"); //Dodaje etykietê nad suwakiem 1	   
 			buttonsPanelLine_End.add(labelAngleValue); 	
   	
-	    	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);	    
-	    	sliderAngleValue.setPreferredSize(new Dimension(200, 50));  //rozmiar suwaka
+	    	sliderAngleValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN1, SLIDER_MAX1, SLIDER_INIT1);	     
 	    	sliderAngleValue.setMajorTickSpacing(30);  //wartoœci na podzia³ce co 30
 	    	sliderAngleValue.setMinorTickSpacing(5);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 5
 	    	sliderAngleValue.setPaintLabels(true);
 	    	sliderAngleValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener
 	    	buttonsPanelLine_End.add(sliderAngleValue);
 	     	
-	    	labelSpeedValue = new JLabel("Prêdkoœæ strza³y: 1 m/s"); //Dodaje etykietê nad suwakiem 2	
+	    	labelSpeedValue = new JLabel("Prêdkoœæ strza³y: 0 m/s"); //Dodaje etykietê nad suwakiem 2	
 	    	buttonsPanelLine_End.add(labelSpeedValue);
 	    	
-	    	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);
-	    	sliderSpeedValue.setPreferredSize(new Dimension(200, 50)); 
+	    	sliderSpeedValue = new JSlider(JSlider.HORIZONTAL, SLIDER_MIN2, SLIDER_MAX2, SLIDER_INIT2);	 
 	    	sliderSpeedValue.setMajorTickSpacing(10);  //wartoœci na podzia³ce co 10
 	    	sliderSpeedValue.setMinorTickSpacing(2);  //ka¿dy kolejny punkt na podzia³ce wiêkszy o 2
 	    	sliderSpeedValue.setPaintLabels(true);
@@ -231,12 +229,12 @@ public class ControlPanel extends JFrame
 	
 	public static double Vy(int alfa, int v, int mas, int res)
 	{
-		return -(v*(Math.sin(Math.toRadians(alfa))) + res); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
+		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
 	}															//dodanie 12 u¿yte w celu uzyskania 
 																//wiarygodniejszej jakosci animacji
 	public static double Vx( int v, int alfa, int mas, int res)
 	{
-		return (v*(Math.cos(Math.toRadians(alfa))) * mas); //mno¿enie przez 8 u¿yte w celu uzyskania 
+		return (v*(Math.cos(Math.toRadians(alfa)))); //mno¿enie przez 8 u¿yte w celu uzyskania 
 														//wiarygodniejszej jakosci animacji
 	}
 
