@@ -49,9 +49,6 @@ public class Object extends GlobalPosition
 	*/
 		
 		//KOLIZJE ZE SCIANA
-		//if (x == animationPanel.getWidth())
-		//	Vx = 0; Vy = 0;
-		//	x = 0;
 		if (x < 0)
 				x = 0;		
 		if (y < 0)
@@ -73,6 +70,15 @@ public class Object extends GlobalPosition
 		Vy = 0;		
 	}
 		
+/*	public void load(int xxx, int yyy, double vXX, double vYY, double resis, double masss)
+	{		
+		x = xxx;
+		y = yyy;
+		Vx = ;
+		Vy = ;		
+		resis =;
+		masss = ;
+	}*/
 	public void draw(Graphics2D g2d)
 	{
 		g2d.drawImage(getPlayerImage(), x, y, null);
