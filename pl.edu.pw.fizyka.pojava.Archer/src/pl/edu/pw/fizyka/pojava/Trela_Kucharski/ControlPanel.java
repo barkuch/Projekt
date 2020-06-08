@@ -231,7 +231,7 @@ public class ControlPanel extends JFrame
 	
 	public static double Vy(int alfa, int v, int mas, int res)
 	{
-		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
+		return -(v*(Math.sin(Math.toRadians(alfa))) + res); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
 	}															//dodanie 12 u¿yte w celu uzyskania 
 																//wiarygodniejszej jakosci animacji
 	public static double Vx( int v, int alfa, int mas, int res)

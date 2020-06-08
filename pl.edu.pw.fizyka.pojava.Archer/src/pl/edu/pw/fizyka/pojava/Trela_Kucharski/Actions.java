@@ -136,6 +136,8 @@ public class Actions implements ActionListener
 				ControlPanel.textRange.setText(String.valueOf(String.format("%.02f", ControlPanel.range) + " [m]")); 			
 					
 				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();
+			
+			
 			}
 			else if(s == "Stop")
 			{

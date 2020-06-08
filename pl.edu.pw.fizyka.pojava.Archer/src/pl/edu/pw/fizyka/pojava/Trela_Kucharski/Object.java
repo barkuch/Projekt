@@ -89,5 +89,6 @@ public class Object extends GlobalPosition
 		ImageIcon i = new ImageIcon(getClass().getResource(plyerimage));
 		return i.getImage();
 	}
+	
 }
 
