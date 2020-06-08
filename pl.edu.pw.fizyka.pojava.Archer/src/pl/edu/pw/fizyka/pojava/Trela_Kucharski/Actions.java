@@ -50,7 +50,7 @@ public class Actions implements ActionListener
 					}
 					catch (IOException e1)
 					{
-						System.out.println("Error is" + e1);
+						System.out.println("Error is " + e1);
 					}
 			}
 			else if(s == "Wczytaj dane")
