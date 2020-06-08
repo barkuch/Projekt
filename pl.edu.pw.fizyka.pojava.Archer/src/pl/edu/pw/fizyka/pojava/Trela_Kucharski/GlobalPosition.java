@@ -18,24 +18,11 @@ public class GlobalPosition
 	}
 	public void move() //tu konrtolujemy jego ruch
 	{
-	//		 
+			 
 		Vy += 9.81f*dt;
 		y += Vy * dt;
 		x += Vx * dt;		
-
-	//WLAŒCIWY WZÓR NA RZUT UKOŒNY, JEDNAK¯Ê NIE DZIA£A POPRAWNIE
-/*
-		x =   (int) (Vx / (controlPanel.resistance/controlPanel.mass) * 
-				(1 - Math.pow(2.72f, (-controlPanel.resistance * t) / controlPanel.mass)));
 	
-		y =   (int) (Vy / (controlPanel.resistance/controlPanel.mass) + 
-				9.81f / (controlPanel.resistance/controlPanel.mass) * 
-				((1 - Math.pow(2.72f, (-controlPanel.resistance * t) / 
-					controlPanel.mass)))- 9.81f / (controlPanel.resistance/controlPanel.mass));	
-	
-		t+=dt;
-	*/
-		
 		//KOLIZJE ZE SCIANA
 		if (x < 0)
 				x = 0;		

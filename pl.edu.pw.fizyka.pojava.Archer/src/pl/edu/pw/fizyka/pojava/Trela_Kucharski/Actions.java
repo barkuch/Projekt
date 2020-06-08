@@ -132,7 +132,7 @@ public class Actions implements ActionListener
 			else if(s == "Losuj opór powietrza")
 			{
 				Random rand = new Random();
-	    		ControlPanel.resistance = rand.nextInt(100)+1;	      		      			
+	    		ControlPanel.resistance = rand.nextInt(19)+1;	      		      			
 	    		ControlPanel.textAirResistance.setText(String.valueOf(ControlPanel.resistance));
 			}
 			else if(s == "Start")
@@ -174,14 +174,15 @@ public class Actions implements ActionListener
 		
 		}
 	}
-	public static double Vy(int alfa, int v, int mas, int res)
+	public static double Vy(int alfa, int v, int m, int k)
 	{
-		return -(v*(Math.sin(Math.toRadians(alfa)))); //"zdefiniowanie Vx jako 	speedValue * sin(angleValue)"
-	}															//dodanie 12 u¿yte w celu uzyskania 
-																//wiarygodniejszej jakosci animacji
-	public static double Vx( int v, int alfa, int mas, int res)
+		//return -(((v*(Math.sin(Math.toRadians(alfa))) / (k / m) ) + 1/k/m) * (1 - Math.pow(2.72f, (-k/m)) - 1/k/m)); 
+		return -(v*(Math.sin(Math.toRadians(alfa)))*k); 
+	}
+	public static double Vx( int v, int alfa, int m, int k)
 	{
-		return (v*(Math.cos(Math.toRadians(alfa)))); //mno¿enie przez 8 u¿yte w celu uzyskania 
-														//wiarygodniejszej jakosci animacji
+	//	return (v*(Math.cos(Math.toRadians(alfa))) / (k / m) * (1 - Math.pow(2.72f, (-k/m)))); 
+		return (v*(Math.cos(Math.toRadians(alfa)))*m); 
+
 	}
 }
