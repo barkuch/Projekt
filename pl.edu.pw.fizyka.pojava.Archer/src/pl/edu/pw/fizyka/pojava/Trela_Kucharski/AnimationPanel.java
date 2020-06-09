@@ -1,8 +1,6 @@
 package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 
-
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
 
 	
 	//ALEKSANDRA TRELA, BARTOSZ KUCHARSKI

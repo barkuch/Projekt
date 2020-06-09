@@ -9,15 +9,12 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 
-
 	//BARTOSZ KUCHARSKI
 public class Object extends GlobalPosition
 {
 
 	private String plyerimage = "/images/Arrow.png";
-	
-	
-	
+
 	public Object(int x, int y)
 	{
 		super(x, y);		

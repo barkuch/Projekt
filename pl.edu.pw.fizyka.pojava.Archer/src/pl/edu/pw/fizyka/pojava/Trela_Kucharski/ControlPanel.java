@@ -73,15 +73,7 @@ public class ControlPanel extends JFrame
 	    
 	    static JLabel labelGravAcceleration;
 	    static JComboBox<String> comboboxGravAcceleration;
-	  
-	     //Save file
-	   //  public static Scanner skaner;
-	  //   public static String file_speedValue, file_angleValue, file_mass, 
-	   // 					file_textAirResistance, file_textFlightTime, 
-	   // 						file_textMaxHeight, file_textRange;
-		
-	   //  public static String inFile;
-	    
+	  	    
 	     public ControlPanel() 
 	     {
 	    	
@@ -215,8 +207,5 @@ public class ControlPanel extends JFrame
 		}	
 	}	 
 	 
-	
-	
-
 	
 }

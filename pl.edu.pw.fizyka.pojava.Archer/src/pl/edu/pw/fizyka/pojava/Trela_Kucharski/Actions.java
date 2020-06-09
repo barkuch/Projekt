@@ -80,23 +80,6 @@ public class Actions implements ActionListener
         				
         			}
         			reader.close();
-       				
-       			
-        		//	ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue); 
-       			//	ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
-        		//	ControlPanel.labelMass.setText(ControlPanel.file_mass);
-       			//	ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
-       			//	ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
-        		//	ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
-        		//	ControlPanel.textRange.setText(ControlPanel.file_textRange);
-        			        			
-        	//		ControlPanel.speedValue = Integer.parseInt(ControlPanel.file_speedValue);
-
-       		//		ControlPanel.angleValue = Integer.parseInt(ControlPanel.file_angleValue);
-     				
-       		//		ControlPanel.mass = Integer.parseInt(ControlPanel.file_mass);
-					
-   			//		ControlPanel.resistance = Integer.parseInt(ControlPanel.file_textAirResistance);
        								
         			ControlPanel.AnimationPanel.Arrow.load(23,476);					
         			ControlPanel.AnimationPanel.repaint();
@@ -161,8 +144,7 @@ public class Actions implements ActionListener
 				ControlPanel.textRange.setText(String.valueOf(String.format("%.02f", ControlPanel.range) + " [m]")); 			
 					
 				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();
-			
-			
+						
 			}
 			else if(s == "Stop")
 			{
@@ -171,7 +153,7 @@ public class Actions implements ActionListener
 			else if(s == "Reset")
 			{
 					ControlPanel.AnimationPanel.Arrow.reset(23,476, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
-	        		ControlPanel.AnimationPanel.repaint();
+	        		//ControlPanel.AnimationPanel.repaint();
 	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
 	        		ControlPanel.textAirResistance.setText(""); 
@@ -184,12 +166,10 @@ public class Actions implements ActionListener
 	        		ControlPanel.sliderAngleValue.setValue(0);
 	        		ControlPanel.angleValue = 0;
 	        		ControlPanel.sliderSpeedValue.setValue(0);
-	        		ControlPanel.speedValue = 0;
-	        		
+	        		ControlPanel.speedValue = 0;	        		
 	        		ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe ");
 			}
-			
-		
+					
 		}
 	}
 	public static double Vy(int alfa, int v)
