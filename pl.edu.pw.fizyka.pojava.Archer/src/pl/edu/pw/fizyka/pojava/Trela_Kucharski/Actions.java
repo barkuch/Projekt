@@ -127,11 +127,11 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Start")
 			{
-				ControlPanel.flighttime = (2 *  ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration; //wzory /
-				ControlPanel.textFlightTime.setText(String.valueOf(String.format("%.02f", ControlPanel.flighttime) + " [s]")); //wyswietli  wartoœæ oporu
+				ControlPanel.flightTime = (2 *  ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration; //wzory /
+				ControlPanel.textFlightTime.setText(String.valueOf(String.format("%.02f", ControlPanel.flightTime) + " [s]")); //wyswietli  wartoœæ oporu
 					        			       				        				
-				ControlPanel.maxheight = Math.pow(ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)), 2) / (2 * ControlPanel.gravAcceleration);
-				ControlPanel.textMaxHeight.setText(String.valueOf(String.format("%.02f", ControlPanel.maxheight) + " [m]")); 
+				ControlPanel.maxHeight = Math.pow(ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)), 2) / (2 * ControlPanel.gravAcceleration);
+				ControlPanel.textMaxHeight.setText(String.valueOf(String.format("%.02f", ControlPanel.maxHeight) + " [m]")); 
 					        			
 				ControlPanel.range = ( Math.pow(ControlPanel.speedValue, 2) * Math.sin( 2* Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration;
 				ControlPanel.textRange.setText(String.valueOf(String.format("%.02f", ControlPanel.range) + " [m]")); 			

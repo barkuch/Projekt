@@ -29,7 +29,7 @@ public class ControlPanel extends JFrame
 	static double gravAcceleration3 = 23.1;
 	static int speedValue, angleValue; 		//zmienne niezbêdne do ChangeListenera
 	static int resistance;	    	   
-	static double range, maxheight, flighttime;
+	static double range, maxHeight, flightTime;
 	   	 	    	   
 	    //menu
 	    JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
