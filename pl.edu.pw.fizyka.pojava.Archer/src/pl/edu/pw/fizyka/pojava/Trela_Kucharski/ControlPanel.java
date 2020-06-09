@@ -24,17 +24,18 @@ public class ControlPanel extends JFrame
 	    private static final int SLIDER_MAX2 = 30;  
 	    private static final int SLIDER_INIT2 = 0;  
 	   
-	    static final double g = 9.80665; //stale przyspieszenie ziemiskie do obliczen
+	    static final double gravity = 9.80665; //stale przyspieszenie ziemiskie do obliczen
 	   
 	    
 	    //variable values
 	    static int resistance;	 
-	    static int mass1 = 7; 
-	    static int mass2 = 2;
-	    static int mass3 = 13;
+	    static double gravAcceleration; //gravAcceleration
+	    static double gravAcceleration1 = 9.8; 
+	    static double gravAcceleration2 = 3.7;
+	    static double gravAcceleration3 = 23.1;
 	    static int speedValue; 	//zmienne niezbêdne do ChangeListenera
 	    static int angleValue;
-	    static int mass;
+	    
 	   
 	    static double range;
 	    static double maxheight;
@@ -54,7 +55,7 @@ public class ControlPanel extends JFrame
 		static AnimationPanel AnimationPanel;
 		JPanel buttonsPanelLine_End, buttonsPanelPage_End;
 	    
-		public int intWidth = 1227; 
+		public int intWidth = 1235; 
 		public int intHeight = 500; 
 		
 		//bottom panel
@@ -71,16 +72,16 @@ public class ControlPanel extends JFrame
 	    static JLabel labelAngleValue;
 	    static JLabel labelSpeedValue;
 	    
-	    static JLabel labelMass;
-	    static JComboBox<String> comboboxMass;
+	    static JLabel labelGravAcceleration;
+	    static JComboBox<String> comboboxGravAcceleration;
 	  
 	     //Save file
-	     public static Scanner skaner;
-	     public static String file_speedValue, file_angleValue, file_mass, 
-	    					file_textAirResistance, file_textFlightTime, 
-	    						file_textMaxHeight, file_textRange;
+	   //  public static Scanner skaner;
+	  //   public static String file_speedValue, file_angleValue, file_mass, 
+	   // 					file_textAirResistance, file_textFlightTime, 
+	   // 						file_textMaxHeight, file_textRange;
 		
-	     public static String inFile;
+	   //  public static String inFile;
 	    
 	     public ControlPanel() 
 	     {
@@ -143,17 +144,17 @@ public class ControlPanel extends JFrame
 	    	sliderSpeedValue.addChangeListener(new SliderChangeListener());	//dodaje ChangeListener        	         
 	    	buttonsPanelLine_End.add(sliderSpeedValue);
 			    	
-	    	labelMass = new JLabel("Masa wybranej strza³y: ");  //etykieta z wyswietlana mas¹
-	    	buttonsPanelLine_End.add(labelMass); 
+	    	labelGravAcceleration = new JLabel("Przyspieszenie grawitacjne: ");  //etykieta z wyswietlana mas¹
+	    	buttonsPanelLine_End.add(labelGravAcceleration); 
 	    	
-	    	comboboxMass = new JComboBox<String>(); //dodaje pole wyboru oraz tworzê mu opcje
-	    	comboboxMass.addItem("stalowa");
-	    	comboboxMass.addItem("aluminiowa");
-	    	comboboxMass.addItem("tytanowa");
-	    	comboboxMass.setActionCommand("cMass");	
-	    	comboboxMass.addActionListener(aL);
+	    	comboboxGravAcceleration = new JComboBox<String>(); //dodaje pole wyboru oraz tworzê mu opcje
+	    	comboboxGravAcceleration.addItem("na Ziemi");
+	    	comboboxGravAcceleration.addItem("na Marsie");
+	    	comboboxGravAcceleration.addItem("na Jowiszu");
+	    	comboboxGravAcceleration.setActionCommand("cGravAcceleration");	
+	    	comboboxGravAcceleration.addActionListener(aL);
 	    	    		    
-	    	buttonsPanelLine_End.add(comboboxMass);
+	    	buttonsPanelLine_End.add(comboboxGravAcceleration);
 	    	    	
 	    	textAirResistance = new JTextField("");  //pole tekstowe, w którym wyœwietlaæ siê bêdzie opór powietrza
 	    	textAirResistance.setEditable(false);
@@ -207,8 +208,8 @@ public class ControlPanel extends JFrame
 			angleValue = sliderAngleValue.getValue();
 			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
 				
-			AnimationPanel.Arrow.Vx = Actions.Vx(speedValue, angleValue, mass, resistance);
-			AnimationPanel.Arrow.Vy = Actions.Vy(speedValue, angleValue, mass, resistance);
+			AnimationPanel.Arrow.Vx = Actions.Vx(speedValue, angleValue);
+			AnimationPanel.Arrow.Vy = Actions.Vy(speedValue, angleValue);
 		}	
 	}	 
 	 

@@ -19,7 +19,7 @@ public class GlobalPosition
 	public void move() //tu konrtolujemy jego ruch
 	{
 			 
-		Vy += 9.81f*dt;
+		Vy += ControlPanel.gravAcceleration*dt;
 		y += Vy * dt;
 		x += Vx * dt;		
 	

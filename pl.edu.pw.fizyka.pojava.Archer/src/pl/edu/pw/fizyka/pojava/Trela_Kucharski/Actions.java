@@ -3,14 +3,14 @@ package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Random;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -24,42 +24,48 @@ public class Actions implements ActionListener
 		{
 			if(s == "Zapisz dane")
 			{
-				ControlPanel.file_speedValue = ControlPanel.labelSpeedValue.getText();
-				ControlPanel.file_angleValue = ControlPanel.labelAngleValue.getText();
-				ControlPanel.file_mass = ControlPanel.labelMass.getText();
-				ControlPanel.file_textAirResistance = ControlPanel.textAirResistance.getText(); //zwraca jako string 
-				ControlPanel.file_textFlightTime = ControlPanel.textFlightTime.getText();
-				ControlPanel.file_textMaxHeight = ControlPanel.textMaxHeight.getText();
-				ControlPanel.file_textRange = ControlPanel.textRange.getText(); 
-					
-				ControlPanel.inFile = ControlPanel.file_angleValue + "\n" + ControlPanel.file_speedValue + "\n" + ControlPanel.file_mass + "\n"
-								+ "Opór powietrza: " + ControlPanel.file_textAirResistance + "\n"
-								+ "Czas lotu strza³y: " + ControlPanel.file_textFlightTime + "\n"
-								+ "Maksymalna wysokoœæ: " + ControlPanel.file_textMaxHeight + "\n"
-								+ "Zasiêg strza³y: " + ControlPanel.file_textRange + "\n" + "----------------------------------" + "\n";	
-					String Data = ControlPanel.inFile;
-					try 
-					{
-						BufferedWriter reader = new BufferedWriter(new FileWriter(new File("C:\\Users\\barti\\git\\Arher\\pl.edu.pw.fizyka.pojava.Archer\\src\\dane\\dane2.txt"), true));
-						reader.write(Data);
-						reader.newLine();
-						reader.close();
-						
-						JOptionPane.showMessageDialog(ControlPanel.itemSave, "Dane dodane do pliku");
-						
-					}
-					catch (IOException e1)
-					{
-						System.out.println("Error is " + e1);
-					}
+				JFileChooser chooser = new JFileChooser();
+                chooser.setDialogTitle("Zapisz plik");
+                int result = chooser.showDialog(null, "Zapisz");
+                if (result == JFileChooser.APPROVE_OPTION)
+                { 
+                	File outputFile = new File(chooser.getSelectedFile().getAbsolutePath());
+                	JOptionPane.showMessageDialog(null, "Plik zapisany pomyœlnie jako " + outputFile);
+                	try
+                	{            
+                     OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(outputFile));
+                     osw.write("K¹t nachylenia ³uku do ziemi: " + ControlPanel.angleValue + " °" + "\n");
+                     osw.write("Prêdkoœæ strza³y: " + ControlPanel.speedValue + " m/s" + "\n");             
+                     osw.write("Masa wybranej strza³y: " + ControlPanel.gravAcceleration + " kg" + "\n");
+                     osw.write("Opór powietrza: " + ControlPanel.resistance + "\n");
+                     
+                     osw.write("Czas lotu strza³y: " + ControlPanel.textFlightTime.getText()+ "\n");
+                     osw.write("Maksymalna wysokoœæ: " + ControlPanel.textMaxHeight.getText()+ "\n");
+                     osw.write("Zasiêg strza³y: " + ControlPanel.textRange.getText()+ "\n");
+                                               
+                     osw.close();                                         
+                	}
+                	catch (FileNotFoundException ex)
+                	{
+                		ex.printStackTrace();
+                	}
+                	catch (IOException ep)
+                	{
+                		System.out.println(ep.getMessage());
+                	}
+                }
 			}
 			else if(s == "Wczytaj dane")
 			{
 				
-				File file = new File("C:\\Users\\barti\\git\\Arher\\pl.edu.pw.fizyka.pojava.Archer\\src\\dane\\dane2.txt");
-        		try 
-        		{  							
-        			FileInputStream fr = new FileInputStream(file);
+				JFileChooser chooser = new JFileChooser();
+	            chooser.setDialogTitle("Wybierz plik");
+	            int result = chooser.showDialog(null, "Wczytaj");
+	            if (result == JFileChooser.APPROVE_OPTION)
+	            {
+	                try 
+	                {  							
+        			FileInputStream fr = new FileInputStream(chooser.getSelectedFile().getAbsolutePath());
         			InputStreamReader isr = new InputStreamReader(fr);
         			BufferedReader reader = new BufferedReader(isr);
         			StringBuffer buffer = new StringBuffer();
@@ -69,20 +75,20 @@ public class Actions implements ActionListener
         			{
         				buffer.append(line);
         				System.out.println(line);
-        				
+        				ControlPanel.sliderSpeedValue.setValue(ControlPanel.speedValue);
+        				ControlPanel.sliderAngleValue.setValue(ControlPanel.angleValue);
         				
         			}
         			reader.close();
-       			//	ControlPanel.sliderSpeedValue.setValue(Integer.parseInt(ControlPanel.file_speedValue));
-        		//	ControlPanel.sliderAngleValue.setValue(Integer.parseInt(ControlPanel.file_angleValue));
+       				
        			
-        			ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue); 
-       				ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
-        			ControlPanel.labelMass.setText(ControlPanel.file_mass);
-       				ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
-       				ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
-        			ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
-        			ControlPanel.textRange.setText(ControlPanel.file_textRange);
+        		//	ControlPanel.labelSpeedValue.setText(ControlPanel.file_speedValue); 
+       			//	ControlPanel.labelAngleValue.setText(ControlPanel.file_angleValue);
+        		//	ControlPanel.labelMass.setText(ControlPanel.file_mass);
+       			//	ControlPanel.textAirResistance.setText(ControlPanel.file_textAirResistance);
+       			//	ControlPanel.textFlightTime.setText(ControlPanel.file_textFlightTime);
+        		//	ControlPanel.textMaxHeight.setText(ControlPanel.file_textMaxHeight);
+        		//	ControlPanel.textRange.setText(ControlPanel.file_textRange);
         			        			
         	//		ControlPanel.speedValue = Integer.parseInt(ControlPanel.file_speedValue);
 
@@ -100,6 +106,7 @@ public class Actions implements ActionListener
         			{
         				e1.printStackTrace();
         			}
+	            }
       						
 			}
 			else if(s == "Wyjœcie")
@@ -111,22 +118,22 @@ public class Actions implements ActionListener
 				JOptionPane.showMessageDialog(ControlPanel.itemAuthors, "Program zosta³ napisany przez \n "
 						+ "Aleksandrê Trelê oraz Bartosza Kucharskiego.");
 			}
-			else if(s == "cMass")
+			else if(s == "cGravAcceleration")
 			{
-				if (ControlPanel.comboboxMass.getSelectedItem().equals("stalowa"))	      			
+				if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	      			
 	    			{	        				
-					ControlPanel.mass = ControlPanel.mass1;
-					ControlPanel.labelMass.setText("Masa wybranej strza³y: " + ControlPanel.mass1 + " kg");	//7 kg
+					ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
+					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
 	    			}
-	    			else if (ControlPanel.comboboxMass.getSelectedItem().equals("aluminiowa"))	      			
+	    			else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
 	    			{
-	    				ControlPanel.mass = ControlPanel.mass2;
-	    				ControlPanel.labelMass.setText("Masa wybranej strza³y: " + ControlPanel.mass2 + " kg");	//2.4 kg
+	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration2;
+	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
 	    			}
-	    			else if (ControlPanel.comboboxMass.getSelectedItem().equals("tytanowa"))	      			
+	    			else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Jowiszu"))	      			
 	    			{
-	    				ControlPanel.mass = ControlPanel.mass3;
-	    				ControlPanel.labelMass.setText("Masa wybranej strza³y: " + ControlPanel.mass3 + " kg");	//13 kg
+	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration3;
+	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
 	    			}
 			}
 			else if(s == "Losuj opór powietrza")
@@ -137,13 +144,13 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Start")
 			{
-				ControlPanel.flighttime = (2 *  ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.g; //wzory /
+				ControlPanel.flighttime = (2 *  ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration; //wzory /
 				ControlPanel.textFlightTime.setText(String.valueOf(String.format("%.02f", ControlPanel.flighttime) + " [s]")); //wyswietli  wartoœæ oporu
 					        			       				        				
-				ControlPanel.maxheight = Math.pow(ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)), 2) / (2 * ControlPanel.g);
+				ControlPanel.maxheight = Math.pow(ControlPanel.speedValue * Math.sin(Math.toRadians(ControlPanel.angleValue)), 2) / (2 * ControlPanel.gravAcceleration);
 				ControlPanel.textMaxHeight.setText(String.valueOf(String.format("%.02f", ControlPanel.maxheight) + " [m]")); 
 					        			
-				ControlPanel.range = ( Math.pow(ControlPanel.speedValue, 2) * Math.sin( 2* Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.g;
+				ControlPanel.range = ( Math.pow(ControlPanel.speedValue, 2) * Math.sin( 2* Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration;
 				ControlPanel.textRange.setText(String.valueOf(String.format("%.02f", ControlPanel.range) + " [m]")); 			
 					
 				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();
@@ -156,7 +163,7 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Reset")
 			{
-					ControlPanel.AnimationPanel.Arrow.reset(25,357, Vx(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance),Vy(ControlPanel.speedValue, ControlPanel.angleValue, ControlPanel.mass, ControlPanel.resistance));					
+					ControlPanel.AnimationPanel.Arrow.reset(25,357, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
 	        		ControlPanel.AnimationPanel.repaint();
 	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
@@ -166,7 +173,7 @@ public class Actions implements ActionListener
 	        		ControlPanel.textRange.setText("Zasiêg strza³y");
 	        		ControlPanel.labelSpeedValue.setText("Prêdkoœæ strza³y: 0 m/s");
 	        		ControlPanel.labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 0 °");
-	        		ControlPanel.labelMass.setText("Masa wybranej strza³y: ");  
+	        		ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: ");  
 	        		ControlPanel.sliderAngleValue.setValue(0);
 	        		ControlPanel.sliderSpeedValue.setValue(0);
 			}
@@ -174,15 +181,13 @@ public class Actions implements ActionListener
 		
 		}
 	}
-	public static double Vy(int alfa, int v, int m, int k)
+	public static double Vy(int alfa, int v)
 	{
-		//return -(((v*(Math.sin(Math.toRadians(alfa))) / (k / m) ) + 1/k/m) * (1 - Math.pow(2.72f, (-k/m)) - 1/k/m)); 
-		return -(v*(Math.sin(Math.toRadians(alfa)))*k); 
+		return -(v*(Math.sin(Math.toRadians(alfa)))+7); 
 	}
-	public static double Vx( int v, int alfa, int m, int k)
+	public static double Vx( int v, int alfa)
 	{
-	//	return (v*(Math.cos(Math.toRadians(alfa))) / (k / m) * (1 - Math.pow(2.72f, (-k/m)))); 
-		return (v*(Math.cos(Math.toRadians(alfa)))*m); 
+		return (v*(Math.cos(Math.toRadians(alfa)))*2.5); 
 
 	}
 }
