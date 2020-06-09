@@ -98,25 +98,25 @@ public class Actions implements ActionListener
 			}
 			else if(s == "cGravAcceleration")
 			{
-				if(ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe "))				      			
+				if(ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("zerowe"))				      			
 	    		{	        				
 					ControlPanel.gravAcceleration = 0;
-					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + "0" + " m/s^2");						
+					ControlPanel.labelGravAcceleration.setText(" Przyspieszenie grawitacjne: " + "0" + " m/s^2");						
 	    		}
 				else if  (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	     			
 				{
 					ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
-					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
+					ControlPanel.labelGravAcceleration.setText(" Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
 				}	
 				else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
 	    		{
 	    			ControlPanel.gravAcceleration = ControlPanel.gravAcceleration2;
-	    			ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
+	    			ControlPanel.labelGravAcceleration.setText(" Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
 	    		}
 	    		else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Jowiszu"))	      			
 	    		{
 	    			ControlPanel.gravAcceleration = ControlPanel.gravAcceleration3;
-	    			ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
+	    			ControlPanel.labelGravAcceleration.setText(" Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
 	    		}	    				    			
 			}
 			else if(s == "Losuj opór powietrza")
@@ -154,7 +154,7 @@ public class Actions implements ActionListener
 	       		ControlPanel.textRange.setText(" Zasiêg strza³y");
 	       		ControlPanel.labelSpeedValue.setText(" Prêdkoœæ strza³y: 0 m/s");
 	       		ControlPanel.labelAngleValue.setText(" K¹t nachylenia ³uku do ziemi: 0 °");
-	       		ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: ");  
+	       		ControlPanel.labelGravAcceleration.setText(" Przyspieszenie grawitacjne: ");  
 	        	ControlPanel.sliderAngleValue.setValue(0);
 	       		ControlPanel.angleValue = 0;
 	       		ControlPanel.sliderSpeedValue.setValue(0);
