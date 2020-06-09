@@ -185,8 +185,7 @@ public class Actions implements ActionListener
 	        		ControlPanel.angleValue = 0;
 	        		ControlPanel.sliderSpeedValue.setValue(0);
 	        		ControlPanel.speedValue = 0;
-	        		//ControlPanel.gravAcceleration = 0;
-	        		//ControlPanel.comboboxGravAcceleration.setSelectedItem(0);
+	        		
 	        		ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe ");
 			}
 			
@@ -195,11 +194,11 @@ public class Actions implements ActionListener
 	}
 	public static double Vy(int alfa, int v)
 	{
-		return -(v*(Math.sin(Math.toRadians(alfa)))+7); 
+		return -(v*(Math.sin(Math.toRadians(alfa)))+7);  //7 u¿yta w celu uwiarygodnienia animacji
 	}
 	public static double Vx( int v, int alfa)
 	{
-		return (v*(Math.cos(Math.toRadians(alfa)))*2.3); 
+		return (v*(Math.cos(Math.toRadians(alfa)))*2.3); //2.3 u¿yte w celu uwiarygodnienia animacji
 
 	}
 }
