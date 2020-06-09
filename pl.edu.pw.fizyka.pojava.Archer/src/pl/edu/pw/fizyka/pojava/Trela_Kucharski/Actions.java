@@ -36,7 +36,7 @@ public class Actions implements ActionListener
                      OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(outputFile));
                      osw.write("K¹t nachylenia ³uku do ziemi: " + ControlPanel.angleValue + " °" + "\n");
                      osw.write("Prêdkoœæ strza³y: " + ControlPanel.speedValue + " m/s" + "\n");             
-                     osw.write("Masa wybranej strza³y: " + ControlPanel.gravAcceleration + " kg" + "\n");
+                     osw.write("Wartoœæ przyspieszenia grawitacyjnego: " + ControlPanel.gravAcceleration + " m/s^2" + "\n");
                      osw.write("Opór powietrza: " + ControlPanel.resistance + "\n");
                      
                      osw.write("Czas lotu strza³y: " + ControlPanel.textFlightTime.getText()+ "\n");
