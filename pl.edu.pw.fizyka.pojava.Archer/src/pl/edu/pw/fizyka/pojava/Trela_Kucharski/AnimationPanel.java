@@ -27,7 +27,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 		
 	public static Timer gamelooptimer;
 	
-	Object Arrow =new Object(25,357); //po³o¿enie pocz¹tkowe obiektu
+	Object Arrow =new Object(23,476); //po³o¿enie pocz¹tkowe obiektu
 
 
 	public AnimationPanel()

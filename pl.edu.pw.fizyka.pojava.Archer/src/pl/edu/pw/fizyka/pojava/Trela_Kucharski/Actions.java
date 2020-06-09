@@ -98,7 +98,7 @@ public class Actions implements ActionListener
 					
    			//		ControlPanel.resistance = Integer.parseInt(ControlPanel.file_textAirResistance);
        								
-        			ControlPanel.AnimationPanel.Arrow.load(25,357);					
+        			ControlPanel.AnimationPanel.Arrow.load(23,476);					
         			ControlPanel.AnimationPanel.repaint();
     			
         			} 
@@ -120,12 +120,17 @@ public class Actions implements ActionListener
 			}
 			else if(s == "cGravAcceleration")
 			{
-				if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	      			
+				if(ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe "))				      			
 	    			{	        				
-					ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
-					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
+						ControlPanel.gravAcceleration = 0;
+						ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + "0" + " m/s^2");						
 	    			}
-	    			else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
+					else if  (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	     			
+					{
+						ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
+						ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
+					}	
+					else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
 	    			{
 	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration2;
 	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
@@ -135,6 +140,8 @@ public class Actions implements ActionListener
 	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration3;
 	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
 	    			}
+	    			
+	    			
 			}
 			else if(s == "Losuj opór powietrza")
 			{
@@ -163,19 +170,24 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Reset")
 			{
-					ControlPanel.AnimationPanel.Arrow.reset(25,357, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
+					ControlPanel.AnimationPanel.Arrow.reset(23,476, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
 	        		ControlPanel.AnimationPanel.repaint();
 	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
 	        		ControlPanel.textAirResistance.setText(""); 
-	        		ControlPanel.textFlightTime.setText("Czas lotu strza³y");
-	        		ControlPanel.textMaxHeight.setText("Max. wysokoœæ");
-	        		ControlPanel.textRange.setText("Zasiêg strza³y");
-	        		ControlPanel.labelSpeedValue.setText("Prêdkoœæ strza³y: 0 m/s");
-	        		ControlPanel.labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: 0 °");
+	        		ControlPanel.textFlightTime.setText(" Czas lotu strza³y");
+	        		ControlPanel.textMaxHeight.setText(" Max. wysokoœæ");
+	        		ControlPanel.textRange.setText(" Zasiêg strza³y");
+	        		ControlPanel.labelSpeedValue.setText(" Prêdkoœæ strza³y: 0 m/s");
+	        		ControlPanel.labelAngleValue.setText(" K¹t nachylenia ³uku do ziemi: 0 °");
 	        		ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: ");  
 	        		ControlPanel.sliderAngleValue.setValue(0);
+	        		ControlPanel.angleValue = 0;
 	        		ControlPanel.sliderSpeedValue.setValue(0);
+	        		ControlPanel.speedValue = 0;
+	        		//ControlPanel.gravAcceleration = 0;
+	        		//ControlPanel.comboboxGravAcceleration.setSelectedItem(0);
+	        		ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe ");
 			}
 			
 		
@@ -187,7 +199,7 @@ public class Actions implements ActionListener
 	}
 	public static double Vx( int v, int alfa)
 	{
-		return (v*(Math.cos(Math.toRadians(alfa)))*2.5); 
+		return (v*(Math.cos(Math.toRadians(alfa)))*2.3); 
 
 	}
 }

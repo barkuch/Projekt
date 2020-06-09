@@ -28,11 +28,11 @@ public class GlobalPosition
 				x = 0;		
 		if (y < 0)
 				y = 0;		
-		if (x > 973)		
-				x = 973;		
-		if (y > 380)		
-				y = 380;		
-		if (y == 380)	//zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹			
+		if (x > 980)		
+				x = 980;		
+		if (y > 496)		
+				y = 496;		
+		if (y == 496)	//zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹			
 			pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); 
 					
 	}
