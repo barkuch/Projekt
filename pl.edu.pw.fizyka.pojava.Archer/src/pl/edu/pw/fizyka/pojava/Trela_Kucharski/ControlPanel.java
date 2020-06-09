@@ -12,45 +12,31 @@ import javax.swing.event.ChangeListener;
 	//ALEKSANDRA TRELA, BARTOSZ KUCHARSKI
 public class ControlPanel extends JFrame 
 {
-	 
-	
-		private static final long serialVersionUID = 1L;
+	 	
+	private static final long serialVersionUID = 1L;
 
-		private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
-	    private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
-	    private static final int SLIDER_INIT1 = 0;  //ustawiam wartoœæ pocz¹tkow¹ suwaka 1 i 2
-	    private static final int SLIDER_MIN2 = 0;  
-	    private static final int SLIDER_MAX2 = 30;  
-	    private static final int SLIDER_INIT2 = 0;  
-	   
-	   
-	   
-	    
-	    //variable values
-	    static int resistance;	 
-	    static double gravAcceleration; //gravAcceleration
-	    static double gravAcceleration1 = 9.8; 
-	    static double gravAcceleration2 = 3.7;
-	    static double gravAcceleration3 = 23.1;
-	    static int speedValue; 	//zmienne niezbêdne do ChangeListenera
-	    static int angleValue;
-	    
-	   
-	    static double range;
-	    static double maxheight;
-	    static double flighttime;	   	 
-	    	   
+	private static final int SLIDER_MIN1 = 0;  //ustawiam wartoœæ minimaln¹ suwaka 1 i 2
+	private static final int SLIDER_MAX1 = 90;  //ustawiam wartoœæ maksymaln¹ suwaka 1 i 2
+	private static final int SLIDER_INIT1 = 0;  //ustawiam wartoœæ pocz¹tkow¹ suwaka 1 i 2
+	private static final int SLIDER_MIN2 = 0;  
+	private static final int SLIDER_MAX2 = 30;  
+	private static final int SLIDER_INIT2 = 0;  
+	       
+	//variable values	 
+	static double gravAcceleration; //gravAcceleration
+	static double gravAcceleration1 = 9.8; 
+	static double gravAcceleration2 = 3.7;
+	static double gravAcceleration3 = 23.1;
+	static int speedValue, angleValue; 		//zmienne niezbêdne do ChangeListenera
+	static int resistance;	    	   
+	static double range, maxheight, flighttime;
+	   	 	    	   
 	    //menu
 	    JMenuBar menuBar;  //Tworzê pasek, w którym umieszczam 2 opcje: Menu oraz More
-	    JMenu menu;
-	    JMenu more;
-	    JMenuItem itemExit; //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
-	    static JMenuItem itemSave;	   
-	    JMenuItem itemLoad;
-	    static JMenuItem itemAuthors;
-
-	    //panels
-	    JFrame frame;			//Tworzê 2 panele
+	    JMenu menu, more;	    																
+	    static JMenuItem itemSave, itemLoad, itemExit, itemAuthors;	   //Tworzê elementy, które bêd¹ zawarte w opcjach Menu i More
+	
+	    //panels	   			
 		static AnimationPanel AnimationPanel;
 		JPanel buttonsPanelLine_End, buttonsPanelPage_End;
 	    
@@ -58,25 +44,14 @@ public class ControlPanel extends JFrame
 		public int intHeight = 610; 
 		
 		//bottom panel
-		static JSlider sliderAngleValue;  //Tworzê 2 suwaki 
-	    static JSlider sliderSpeedValue;  	  	   
-	    static JTextField textAirResistance; //Tworzê pola niezbêdne pola tekstowe, guziki, etykiety oraz pole wyboru
-	    static JTextField textFlightTime;	
-	    static JTextField textMaxHeight;
-	    static JTextField textRange;	    	        
-	    static JButton buttonRandom;
-	    static JButton buttonStart;
-	    static JButton buttonStop;
-	    static JButton buttonRestart;
-	    static JLabel labelAngleValue;
-	    static JLabel labelSpeedValue;
-	    
-	    static JLabel labelGravAcceleration;
+		static JSlider sliderAngleValue, sliderSpeedValue;  //Tworzê 2 suwaki 	  	   
+	    static JTextField textAirResistance, textFlightTime, textMaxHeight, textRange; //Tworzê pola niezbêdne pola tekstowe, guziki, etykiety oraz pole wyboru	    	        
+	    static JButton buttonRandom, buttonStart, buttonStop, buttonRestart;
+	    static JLabel labelAngleValue, labelSpeedValue, labelGravAcceleration;	  	    	
 	    static JComboBox<String> comboboxGravAcceleration;
 	  	    
-	     public ControlPanel() 
-	     {
-	    	
+	    public ControlPanel() 
+	    {	    	
 	    	setTitle("Archer");
 			setSize(intWidth, intHeight);			
 			this.setLayout(new BorderLayout());
@@ -104,13 +79,13 @@ public class ControlPanel extends JFrame
 	        menuBar.add(menu); //dodaje opcje do paska
 	        menuBar.add(more);
 	        setJMenuBar(menuBar);
-	        
+	    
 	        
 			//PANEL ANIMACJI
 			AnimationPanel = new AnimationPanel();					
 			this.add(AnimationPanel, BorderLayout.CENTER);
 			
-					
+			
 	       //PANEL STEROWANIA
 			buttonsPanelLine_End = new JPanel();
 			buttonsPanelLine_End.setLayout(new GridLayout(12,1));
@@ -170,8 +145,7 @@ public class ControlPanel extends JFrame
 	    	textRange.setEditable(false);
 	    	buttonsPanelLine_End.add(textRange);	  
 	    	this.add(buttonsPanelLine_End, BorderLayout.LINE_END);
-	              	         
-	    	
+	              	         	    	
 	    	buttonsPanelPage_End = new JPanel();  			    	
 	    	buttonStart = new JButton("Start");  //przycisk, który pozwoli uruchomiæ i wstrzymaæ grê		
 	    	buttonStart.addActionListener(aL);	    		    
@@ -184,28 +158,24 @@ public class ControlPanel extends JFrame
 			buttonRestart = new JButton("Reset");  //przycisk wyzerowania wszystkich komponentów oraz resetuj¹cy po³o¿enie strza³y		
 			buttonRestart.addActionListener(aL);		
 			buttonsPanelPage_End.add(buttonRestart); 
-			this.add(buttonsPanelPage_End, BorderLayout.PAGE_END);	   
-	    	    		       	      	   
+			this.add(buttonsPanelPage_End, BorderLayout.PAGE_END);	   	    	    		       	      	   
 	    }
 	    	 
-	Actions aL = new Actions();
-	     
-	     
-	public class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
-    {
-		@Override
-		public void stateChanged(ChangeEvent e) 
-		{
-			speedValue = sliderSpeedValue.getValue();
-			labelSpeedValue.setText("Prêdkoœæ strza³y: " + speedValue + " m/s");	
+	    Actions aL = new Actions();
+	     	     
+	    public class SliderChangeListener implements ChangeListener  //klasa implementacyjna suwaka
+	    {
+	    	@Override
+	    	public void stateChanged(ChangeEvent e) 
+	    	{
+	    		speedValue = sliderSpeedValue.getValue();
+	    		labelSpeedValue.setText("Prêdkoœæ strza³y: " + speedValue + " m/s");	
 							
-			angleValue = sliderAngleValue.getValue();
-			labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
+	    		angleValue = sliderAngleValue.getValue();
+	    		labelAngleValue.setText("K¹t nachylenia ³uku do ziemi: " + angleValue + " °");												
 				
-			AnimationPanel.Arrow.Vx = Actions.Vx(speedValue, angleValue);
-			AnimationPanel.Arrow.Vy = Actions.Vy(speedValue, angleValue);
-		}	
-	}	 
-	 
-	
+	    		AnimationPanel.Arrow.Vx = Actions.Vx(speedValue, angleValue);
+	    		AnimationPanel.Arrow.Vy = Actions.Vy(speedValue, angleValue);
+	    	}	
+	    }	 	 	
 }

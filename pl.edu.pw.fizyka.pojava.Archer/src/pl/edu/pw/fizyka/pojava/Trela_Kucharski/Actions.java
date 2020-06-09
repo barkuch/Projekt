@@ -65,25 +65,20 @@ public class Actions implements ActionListener
 	            {
 	                try 
 	                {  							
-        			FileInputStream fr = new FileInputStream(chooser.getSelectedFile().getAbsolutePath());
-        			InputStreamReader isr = new InputStreamReader(fr);
-        			BufferedReader reader = new BufferedReader(isr);
-        			StringBuffer buffer = new StringBuffer();
+	                	FileInputStream fr = new FileInputStream(chooser.getSelectedFile().getAbsolutePath());
+	                	InputStreamReader isr = new InputStreamReader(fr);
+	                	BufferedReader reader = new BufferedReader(isr);
+	                	StringBuffer buffer = new StringBuffer();
 
-        			String line = null;
-        			while ((line = reader.readLine()) != null) 
-        			{
-        				buffer.append(line);
-        				System.out.println(line);
-        				ControlPanel.sliderSpeedValue.setValue(ControlPanel.speedValue);
-        				ControlPanel.sliderAngleValue.setValue(ControlPanel.angleValue);
-        				
-        			}
-        			reader.close();
-       								
-        			ControlPanel.AnimationPanel.Arrow.load(23,476);					
-        			ControlPanel.AnimationPanel.repaint();
-    			
+	                	String line = null;
+	                	while ((line = reader.readLine()) != null) 
+	                	{
+	                		buffer.append(line);
+	                		System.out.println(line);        			
+	                		//JOptionPane.showMessageDialog(null, line);
+	                	}
+	                	reader.close();
+       							       	   			
         			} 
         			catch (Exception e1) 
         			{
@@ -104,27 +99,25 @@ public class Actions implements ActionListener
 			else if(s == "cGravAcceleration")
 			{
 				if(ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe "))				      			
-	    			{	        				
-						ControlPanel.gravAcceleration = 0;
-						ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + "0" + " m/s^2");						
-	    			}
-					else if  (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	     			
-					{
-						ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
-						ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
-					}	
-					else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
-	    			{
-	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration2;
-	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
-	    			}
-	    			else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Jowiszu"))	      			
-	    			{
-	    				ControlPanel.gravAcceleration = ControlPanel.gravAcceleration3;
-	    				ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
-	    			}
-	    			
-	    			
+	    		{	        				
+					ControlPanel.gravAcceleration = 0;
+					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + "0" + " m/s^2");						
+	    		}
+				else if  (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Ziemi"))	     			
+				{
+					ControlPanel.gravAcceleration = ControlPanel.gravAcceleration1;
+					ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration1 + " m/s^2");	
+				}	
+				else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Marsie"))	      			
+	    		{
+	    			ControlPanel.gravAcceleration = ControlPanel.gravAcceleration2;
+	    			ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration2 + " m/s^2");	
+	    		}
+	    		else if (ControlPanel.comboboxGravAcceleration.getSelectedItem().equals("na Jowiszu"))	      			
+	    		{
+	    			ControlPanel.gravAcceleration = ControlPanel.gravAcceleration3;
+	    			ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: " + ControlPanel.gravAcceleration3 + " m/s^2");	
+	    		}	    				    			
 			}
 			else if(s == "Losuj opór powietrza")
 			{
@@ -143,8 +136,7 @@ public class Actions implements ActionListener
 				ControlPanel.range = ( Math.pow(ControlPanel.speedValue, 2) * Math.sin( 2* Math.toRadians(ControlPanel.angleValue)) ) / ControlPanel.gravAcceleration;
 				ControlPanel.textRange.setText(String.valueOf(String.format("%.02f", ControlPanel.range) + " [m]")); 			
 					
-				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();
-						
+				pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.start();						
 			}
 			else if(s == "Stop")
 			{
@@ -152,33 +144,33 @@ public class Actions implements ActionListener
 			}
 			else if(s == "Reset")
 			{
-					ControlPanel.AnimationPanel.Arrow.reset(23,476, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
-	        		ControlPanel.AnimationPanel.repaint();
-	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
+				ControlPanel.AnimationPanel.Arrow.reset(23,476, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
+	        	ControlPanel.AnimationPanel.repaint();
+	        	pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
-	        		ControlPanel.textAirResistance.setText(""); 
-	        		ControlPanel.textFlightTime.setText(" Czas lotu strza³y");
-	        		ControlPanel.textMaxHeight.setText(" Max. wysokoœæ");
-	        		ControlPanel.textRange.setText(" Zasiêg strza³y");
-	        		ControlPanel.labelSpeedValue.setText(" Prêdkoœæ strza³y: 0 m/s");
-	        		ControlPanel.labelAngleValue.setText(" K¹t nachylenia ³uku do ziemi: 0 °");
-	        		ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: ");  
-	        		ControlPanel.sliderAngleValue.setValue(0);
-	        		ControlPanel.angleValue = 0;
-	        		ControlPanel.sliderSpeedValue.setValue(0);
-	        		ControlPanel.speedValue = 0;	        		
-	        		ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe ");
-			}
-					
+	        	ControlPanel.textAirResistance.setText(""); 
+	        	ControlPanel.textFlightTime.setText(" Czas lotu strza³y");
+	        	ControlPanel.textMaxHeight.setText(" Max. wysokoœæ");
+	       		ControlPanel.textRange.setText(" Zasiêg strza³y");
+	       		ControlPanel.labelSpeedValue.setText(" Prêdkoœæ strza³y: 0 m/s");
+	       		ControlPanel.labelAngleValue.setText(" K¹t nachylenia ³uku do ziemi: 0 °");
+	       		ControlPanel.labelGravAcceleration.setText("Przyspieszenie grawitacjne: ");  
+	        	ControlPanel.sliderAngleValue.setValue(0);
+	       		ControlPanel.angleValue = 0;
+	       		ControlPanel.sliderSpeedValue.setValue(0);
+	       		ControlPanel.speedValue = 0;	        		
+	       		ControlPanel.comboboxGravAcceleration.getSelectedItem().equals(" zerowe ");
+			}					
 		}
 	}
+	
 	public static double Vy(int alfa, int v)
 	{
 		return -(v*(Math.sin(Math.toRadians(alfa)))+7);  //7 u¿yta w celu uwiarygodnienia animacji
 	}
+	
 	public static double Vx( int v, int alfa)
 	{
 		return (v*(Math.cos(Math.toRadians(alfa)))*2.3); //2.3 u¿yte w celu uwiarygodnienia animacji
-
 	}
 }

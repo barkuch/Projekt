@@ -4,8 +4,8 @@ package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 public class GlobalPosition 
 {
 	
-	double Vx; 	//wartosic które s¹ ze sliderow
-	double Vy;	//  odpowiadaja za ruch
+	double Vx; 	
+	double Vy;	
 	
 	double dt = 0.1; //krok ca³kowania
 	
@@ -16,9 +16,8 @@ public class GlobalPosition
 		this.x = x; //po³o¿enie
 		this.y = y;
 	}
-	public void move() //tu konrtolujemy jego ruch
-	{
-			 
+	public void move() 
+	{			 
 		Vy += ControlPanel.gravAcceleration*dt;
 		y += Vy * dt;
 		x += Vx * dt;		
@@ -32,9 +31,8 @@ public class GlobalPosition
 				x = 980;		
 		if (y > 496)		
 				y = 496;		
-		if (y == 496)	//zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹			
-			pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); 
-					
+		if (y == 496)			//zatrzymanie animacji po zetkniêciu siê strzaly z ziemi¹			
+			pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop(); 					
 	}
 	
 	public void reset(int xx, int yy, double vX, double vY)
@@ -48,8 +46,7 @@ public class GlobalPosition
 	public void load(int xxx, int yyy) //stworzony na potrzeby ustaiwenia strza³y w pierwotnej pozycji
 	{		
 		x = xxx;
-		y = yyy;
-	
+		y = yyy;		
 	}
 	
 }

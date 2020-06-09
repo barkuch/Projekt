@@ -28,10 +28,8 @@ public class AnimationPanel extends JPanel implements ActionListener
 
 
 	public AnimationPanel()
-	{
-		
-		gamelooptimer = new Timer(16, this); //ze co sto milisknd sie powatarza		
-				
+	{		
+		gamelooptimer = new Timer(16, this); //ze co sto milisknd sie powatarza						
 	}
 
 	public void paint(Graphics g)
@@ -59,8 +57,7 @@ public class AnimationPanel extends JPanel implements ActionListener
 	{ 
 		intHeight = intH; 
 		intWidth = intW;
-	}
-	
+	}	
 }
 
 	

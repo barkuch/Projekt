@@ -1,7 +1,6 @@
 package pl.edu.pw.fizyka.pojava.Trela_Kucharski;
 
 
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 
@@ -19,8 +18,7 @@ public class Object extends GlobalPosition
 	{
 		super(x, y);		
 	}
-	
-	
+		
 	public void draw(Graphics2D g2d)
 	{
 		g2d.drawImage(getPlayerImage(), x, y, null);
