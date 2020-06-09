@@ -153,7 +153,7 @@ public class Actions implements ActionListener
 			else if(s == "Reset")
 			{
 					ControlPanel.AnimationPanel.Arrow.reset(23,476, Vx(ControlPanel.speedValue, ControlPanel.angleValue),Vy(ControlPanel.speedValue, ControlPanel.angleValue));					
-	        		//ControlPanel.AnimationPanel.repaint();
+	        		ControlPanel.AnimationPanel.repaint();
 	        		pl.edu.pw.fizyka.pojava.Trela_Kucharski.AnimationPanel.gamelooptimer.stop();
 				
 	        		ControlPanel.textAirResistance.setText(""); 
